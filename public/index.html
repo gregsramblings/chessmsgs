@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>ChessTweet</title>
+  <title>ChessMsgs</title>
   <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
   <style>
   html, body {
@@ -27,7 +27,7 @@ function onChange (oldPos, newPos) {
   console.log('Old position: ' + Chessboard.objToFen(oldPos))
   console.log('New position: ' + Chessboard.objToFen(newPos))
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-  newurl = "https://chesstweet.web.app/?fen=" + Chessboard.objToFen(newPos)
+  newurl = "https://chessmsgs.com/?fen=" + Chessboard.objToFen(newPos)
   copyToClipboard(newurl)
 }
 
