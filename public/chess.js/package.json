@@ -1,0 +1,50 @@
+{
+  "_from": "chess.js",
+  "_id": "chess.js@0.11.0",
+  "_inBundle": false,
+  "_integrity": "sha512-yTpi6XbRMkBtnjSvbt6wEp9Y7JzhJl1MC3GNn67q5ClyccXxCRf5cMPSUg4OblrUapg1kLHm7WzxxEVp20NK1Q==",
+  "_location": "/chess.js",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "chess.js",
+    "name": "chess.js",
+    "escapedName": "chess.js",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/chess.js/-/chess.js-0.11.0.tgz",
+  "_shasum": "e1802179b944eab5daf11b5d4bce08cdcadbeffa",
+  "_spec": "chess.js",
+  "_where": "/private/tmp/1",
+  "bugs": {
+    "url": "https://github.com/jhlywa/chess.js/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "[![Build Status](https://travis-ci.org/jhlywa/chess.js.svg?branch=master)](https://travis-ci.org/jhlywa/chess.js)",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  },
+  "homepage": "https://github.com/jhlywa/chess.js",
+  "keywords": [
+    "chess"
+  ],
+  "license": "BSD-2-Clause",
+  "main": "chess.js",
+  "name": "chess.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhlywa/chess.js.git"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "version": "0.11.0"
+}
