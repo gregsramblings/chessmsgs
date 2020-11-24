@@ -8,27 +8,22 @@
 </head>
 <body>
 
-<!--- Begin Example HTML ------------------------------------------------------>
 <div id="myBoard" style="width: 400px"></div>
+
+
 <label>Status:</label>
 <div id="status"></div>
 <label>FEN:</label>
 <div id="fen"></div>
-<label>PGN:</label>
-<div id="pgn"></div>
-<!--- End Example HTML -------------------------------------------------------->
+
+<button id="flipOrientationBtn">Flip orientation</button>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="js/chessboard-1.0.0.js"></script>
 <script src="chess.js/chess.js"></script>
 <script>
-// --- Begin Example JS --------------------------------------------------------
-// NOTE: this example uses the chess.js library:
-// https://github.com/jhlywa/chess.js
 
 var board = null
-var game; 
-
 
 var $status = $('#status')
 var $fen = $('#fen')
@@ -37,6 +32,13 @@ var $pgn = $('#pgn')
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
 var startFen = urlParams.get('fen')
+
+var url = new URL(window.location);
+
+var moveFrom = null
+var moveTo = null
+
+var game; 
 
 if(startFen) {
   game = new Chess(startFen)  // Start at passed position
@@ -56,17 +58,22 @@ function onDragStart (source, piece, position, orientation) {
   }
 }
 
+
 function onDrop (source, target) {
   // see if the move is legal
   var move = game.move({
     from: source,
     to: target,
-    promotion: 'q' // NOTE: always promote to a queen for example simplicity
+    promotion: 'q' // NOTE: always promote to a queen for now
+
   })
 
   // illegal move
   if (move === null) return 'snapback'
+  console.log(source + "->" + target)
 
+  moveFrom = source
+  moveTo = target
   updateStatus()
 }
 
@@ -103,7 +110,11 @@ function updateStatus () {
       status += ', ' + moveColor + ' is in check'
     }
 
-    
+    url.searchParams.set('fen', game.fen());
+    if (moveFrom) url.searchParams.set('from', moveFrom);
+    if (moveTo) url.searchParams.set('to', moveTo);
+
+    window.history.pushState({}, '', url);
   }
 
   $status.html(status)
@@ -124,6 +135,11 @@ if(startFen) board.position(startFen,false)
 
 
 updateStatus()
+
+
+$('#flipOrientationBtn').on('click', board.flip)
+
+
 // --- End Example JS ----------------------------------------------------------
 </script>
 </body>
