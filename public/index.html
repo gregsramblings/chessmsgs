@@ -16,8 +16,11 @@
       text-align: right;
       padding-right: 10px;
       display: block;
-      width: 100px;
+      width: 75px;
       float: left;
+      overflow: hidden;
+      white-space: nowrap;
+
     }
 
     div { color:#ffffff; }
@@ -33,6 +36,11 @@
      overflow-x: hidden; 
     }
 
+    .notation-322f9 {
+      font-size:11px;
+    }
+
+
   </style>
 
 </head>
@@ -43,8 +51,10 @@
 <div id="status"></div>
 <label>Last move:</label>
 <div id="lastMove">none</div>
+<!--
 <label>FEN:</label>
 <div id="fen"></div>
+-->
 <br>
 
 <div style="width:400px" id="buttons">
@@ -156,6 +166,7 @@ function onDrop (source, target) {
   moveTo = target
   updateStatus()
   moveComplete = true;
+  $status.html("Copy & paste URL to opponent")
 }
 
 // update the board position after the piece snap
