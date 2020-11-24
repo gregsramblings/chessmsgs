@@ -3,40 +3,81 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>chessboardjs Example #5000 - Only Allow Legal Moves</title>
-  <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css" integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU" crossorigin="anonymous">
+  <title>ChessMsgs.com</title>
+  <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
+
+  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="initial-scale=1.0">
+
+  <style>
+    label {
+      color: #B4886B;
+      font-weight: bold;
+      text-align: right;
+      padding-right: 10px;
+      display: block;
+      width: 100px;
+      float: left;
+    }
+
+    div { color:#ffffff; }
+
+    html, body {
+     overflow-x: hidden;
+    }
+    body {
+        position: relative;
+        background-color: #222222;
+    }
+    myBoard {
+     overflow-x: hidden; 
+    }
+
+  </style>
+
 </head>
 <body>
-
 <div id="myBoard" style="width: 400px"></div>
-
-
+<br>
 <label>Status:</label>
 <div id="status"></div>
+<label>Last move:</label>
+<div id="lastMove">none</div>
 <label>FEN:</label>
 <div id="fen"></div>
+<br>
 
+<div style="width:400px" id="buttons">
 <button id="flipOrientationBtn">Flip orientation</button>
+<button id="copyToClipboardBtn">Copy to clipboard</button>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="js/chessboard-1.0.0.js"></script>
 <script src="chess.js/chess.js"></script>
-<script>
 
+<script>
 var board = null
 
 var $status = $('#status')
 var $fen = $('#fen')
 var $pgn = $('#pgn')
+var $lastMove = $('#lastMove')
 
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
-var startFen = urlParams.get('fen')
 
-var url = new URL(window.location);
+var startFen  = urlParams.get('fen')
+var lastFrom  = urlParams.get('from')
+var lastTo    = urlParams.get('to')
+
+var url = new URL(window.location)
 
 var moveFrom = null
 var moveTo = null
+
+var moveComplete = false;
+
 
 var whiteSquareGrey = '#a9ffa9'
 var blackSquareGrey = '#69af69'
@@ -60,6 +101,8 @@ function greySquare (square) {
 }
 
 function onMouseoverSquare (square, piece) {
+  if (moveComplete) return false
+
   // get list of possible moves for this square
   var moves = game.moves({
     square: square,
@@ -85,7 +128,7 @@ function onMouseoutSquare (square, piece) {
 function onDragStart (source, piece, position, orientation) {
   // do not pick up pieces if the game is over
   if (game.game_over()) return false
-
+  if (moveComplete) return false
   // only pick up pieces for the side to move
   if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
       (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
@@ -112,6 +155,7 @@ function onDrop (source, target) {
   moveFrom = source
   moveTo = target
   updateStatus()
+  moveComplete = true;
 }
 
 // update the board position after the piece snap
@@ -147,16 +191,26 @@ function updateStatus () {
       status += ', ' + moveColor + ' is in check'
     }
 
-    url.searchParams.set('fen', game.fen());
-    if (moveFrom) url.searchParams.set('from', moveFrom);
-    if (moveTo) url.searchParams.set('to', moveTo);
+    if(game.fen() != "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {
+      url.searchParams.set('fen', game.fen());
+      if (moveFrom) url.searchParams.set('from', moveFrom);
+      if (moveTo) url.searchParams.set('to', moveTo);
 
-    window.history.pushState({}, '', url);
+      window.history.pushState({}, '', url);
+    }
   }
+
+  if (lastFrom) $lastMove.html(lastFrom + ' → ' + lastTo)
+    
 
   $status.html(status)
   $fen.html(game.fen())
   $pgn.html(game.pgn())
+}
+
+function copyToClipboard() {
+  navigator.clipboard.writeText(window.location)
+  console.log("DONE")
 }
 
 
@@ -184,6 +238,9 @@ updateStatus()
 
 
 $('#flipOrientationBtn').on('click', board.flip)
+$('#copyToClipboardBtn').on('click', copyToClipboard)
+
+
 
 
 // --- End Example JS ----------------------------------------------------------
