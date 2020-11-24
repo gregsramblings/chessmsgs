@@ -27,10 +27,23 @@
 // https://github.com/jhlywa/chess.js
 
 var board = null
-var game = new Chess()
+var game; 
+
+
 var $status = $('#status')
 var $fen = $('#fen')
 var $pgn = $('#pgn')
+
+var queryString = window.location.search;
+var urlParams = new URLSearchParams(queryString);
+var startFen = urlParams.get('fen')
+
+if(startFen) {
+  game = new Chess(startFen)  // Start at passed position
+} else {
+  game = new Chess()          // Default starting board
+}
+
 
 function onDragStart (source, piece, position, orientation) {
   // do not pick up pieces if the game is over
@@ -89,6 +102,8 @@ function updateStatus () {
     if (game.in_check()) {
       status += ', ' + moveColor + ' is in check'
     }
+
+    
   }
 
   $status.html(status)
@@ -104,6 +119,9 @@ var config = {
   onSnapEnd: onSnapEnd
 }
 board = Chessboard('myBoard', config)
+
+if(startFen) board.position(startFen,false)
+
 
 updateStatus()
 // --- End Example JS ----------------------------------------------------------
