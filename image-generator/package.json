@@ -1,0 +1,20 @@
+{
+  "name": "chessmsgs-img",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "functions-framework --target=helloWorld"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^1.7.1",
+    "canvas": "^2.6.1",
+    "canvas-to-buffer": "^1.1.0",
+    "chess.js": "^0.10.2",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "chess-image-generator": "^1.0.6"
+  }
+}
