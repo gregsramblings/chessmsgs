@@ -1,5 +1,5 @@
 html, body {
- overflow-x: hidden;
+ overflow: hidden;
 }
 body {
     position: relative;
@@ -7,7 +7,7 @@ body {
 }
 
 #myBoard {
- overflow-x: hidden; 
+ overflow: hidden; 
 }
 
 label {
@@ -24,7 +24,6 @@ label {
 }
 
 div { color:#ffffff; }
-
 
 .notation-322f9 {
   font-size:11px;

@@ -1,4 +1,4 @@
-exports.helloWorld = (req, res) => {
+exports.createImage = (req, res) => {
 
 	var fen = req.query.fen;
 	var ChessImageGenerator = require('chess-image-generator');
