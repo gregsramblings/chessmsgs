@@ -1,0 +1,31 @@
+html, body {
+ overflow-x: hidden;
+}
+body {
+    position: relative;
+    background-color: #222222;
+}
+
+#myBoard {
+ overflow-x: hidden; 
+}
+
+label {
+  color: #B4886B;
+  font-weight: bold;
+  text-align: right;
+  padding-right: 10px;
+  display: block;
+  width: 75px;
+  float: left;
+  overflow: hidden;
+  white-space: nowrap;
+
+}
+
+div { color:#ffffff; }
+
+
+.notation-322f9 {
+  font-size:11px;
+}
