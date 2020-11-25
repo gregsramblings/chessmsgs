@@ -12,9 +12,9 @@
     "@google-cloud/functions-framework": "^1.7.1",
     "canvas": "^2.6.1",
     "canvas-to-buffer": "^1.1.0",
+    "chess-image-generator": "^1.0.6",
     "chess.js": "^0.10.2",
     "fs": "0.0.1-security",
-    "path": "^0.12.7",
-    "chess-image-generator": "^1.0.6"
+    "path": "^0.12.7"
   }
 }
