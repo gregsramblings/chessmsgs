@@ -1,3 +1,4 @@
+// Endpoint: https://us-central1-chessmsgs.cloudfunctions.net/chessmsgs-image
 exports.createImage = (req, res) => {
 
 	var fen = null;
