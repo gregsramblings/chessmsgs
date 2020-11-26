@@ -8,10 +8,10 @@ exports.createImage = (req, res) => {
 		fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 	}
 	
-	console.log(fen);
+	console.log("|" + fen + "|");
 	var ChessImageGenerator = require('chess-image-generator');
 	var imageGenerator = new ChessImageGenerator();
-	if(fen == null) fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+	if(fen == '') fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 	imageGenerator.loadFEN(fen);	
 
