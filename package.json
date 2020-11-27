@@ -1,0 +1,21 @@
+{
+  "author": "Greg Wilson <greg.wilson@gmail.com> (http://gregsramblings.com/)",
+  "name": "chessmsgs",
+  "description": "ChessMsgs",
+  "homepage": "https://chessmsgs.com",
+  "license": "MIT",
+  "main": "index.js",
+
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gregsramblings/chessmsgs.git"
+  },
+  "dependencies": {
+    "jquery": ">=3.4.1",
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": ">= 12.0.0"
+  }
+}
