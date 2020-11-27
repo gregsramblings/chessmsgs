@@ -17,5 +17,9 @@
   },
   "engines": {
     "node": ">= 12.0.0"
+  },
+  "scripts": {
+    "build": "gcloud builds submit --tag gcr.io/chessmsgs/chessmsgs",
+    "deploy": "gcloud run deploy chessmsgs --image gcr.io/chessmsgs/chessmsgs --platform managed"
   }
 }

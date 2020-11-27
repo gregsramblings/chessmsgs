@@ -153,7 +153,6 @@ function copyToClipboard() {
   navigator.clipboard.writeText(window.location)
 }
 
-
 if(startFen) {
   game = new Chess(startFen)  // Start at passed position
 } else {
@@ -174,6 +173,12 @@ board = Chessboard('myBoard', config)
 if(startFen) board.position(startFen,false)
 
 updateStatus()
+
+// Total hack to workaround Chrome iOS bug
+const disableBodyScroll = bodyScrollLock.disableBodyScroll;
+const enableBodyScroll = bodyScrollLock.enableBodyScroll;
+const targetElement = document.querySelector('#dummy');
+disableBodyScroll(targetElement);
 
 $('#flipOrientationBtn').on('click', board.flip)
 $('#copyToClipboardBtn').on('click', copyToClipboard)

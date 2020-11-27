@@ -5,7 +5,7 @@
 
 <meta charset="utf-8" />
 <title>ChessMsgs.com</title>
-<link rel="stylesheet" href="css/chessmsgs.css?v=23">
+<link rel="stylesheet" href="css/chessmsgs.css?v=29">
 <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
 
 <ameta name="twitter:card" 			content="summary_large_image"/>
@@ -18,6 +18,9 @@
 <meta property="og:type" 			content="website" />
 <meta property="og:url" 			content="{{url}}" />
 <meta property="og:image" 			content="{{imgUrl}}" />
+<meta property="og:image:width" 	content="180" />
+<meta property="og:image:height" 	content="180" />
+
 
 </head>
 
@@ -29,6 +32,7 @@
 <label>Last move:</label>
 <div id="lastMove">none</div>
 
+<div id="dummy"></div>
 <br>
 
 <div style="width:400px" id="buttons">
@@ -40,7 +44,10 @@
 <script src="js/chessboard-1.0.0.js"></script>
 <script src="chess.js/chess.js"></script>
 
-<script src="js/chessmsgs.js?v=10"></script>
+<script src="js/bodyScrollLock.min.js"></script>
+<script src="js/chessmsgs.js?v=16"></script>
+
+
 
 </body>
 </html>
