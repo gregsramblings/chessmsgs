@@ -25,7 +25,6 @@ var blackSquareGrey = '#69af69'
 
 var game; 
 
-
 function removeGreySquares () {
   $('#myBoard .square-55d63').css('background', '')
 }
@@ -152,7 +151,6 @@ function updateStatus () {
 
 function copyToClipboard() {
   navigator.clipboard.writeText(window.location)
-  console.log("DONE")
 }
 
 
@@ -175,9 +173,7 @@ board = Chessboard('myBoard', config)
 
 if(startFen) board.position(startFen,false)
 
-
 updateStatus()
-
 
 $('#flipOrientationBtn').on('click', board.flip)
 $('#copyToClipboardBtn').on('click', copyToClipboard)
