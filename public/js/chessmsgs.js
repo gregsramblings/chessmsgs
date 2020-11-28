@@ -106,14 +106,14 @@ function onDrop(source, target) {
   // illegal move
   if (move === null) return 'snapback'
   console.log(source + "->" + target)
-
+  
   moveFrom = source
   moveTo = target
+  
   updateStatus()
   moveComplete = true;
   $('#copyToClipboardBtn').show();
 
-  $status.html("Press copy button. Then paste to opponent.")
 }
 
 
@@ -150,13 +150,14 @@ function updateStatus() {
       status += ', ' + moveColor + ' is in check'
     }
 
-    if (game.fen() != "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {
-      url.searchParams.set('fen', game.fen());
-      if (moveFrom) url.searchParams.set('from', moveFrom);
-      if (moveTo) url.searchParams.set('to', moveTo);
+  }
 
-      window.history.pushState({}, '', url);
-    }
+  if (game.fen() != "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {
+    url.searchParams.set('fen', game.fen());
+    if (moveFrom) url.searchParams.set('from', moveFrom);
+    if (moveTo) url.searchParams.set('to', moveTo);
+
+    window.history.pushState({}, '', url);
   }
 
   if (lastFrom) $lastMove.html(lastFrom + ' → ' + lastTo)
