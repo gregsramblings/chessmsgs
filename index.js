@@ -1,5 +1,7 @@
-const express = require('express');
-const app = express();
+var compression = require('compression')
+var express = require('express')
+var app = express()
+app.use(compression())
 
 var fs = require('fs')
 var indexFileContent = fs.readFileSync('public/index.html', 'utf8');
