@@ -22,7 +22,8 @@ ol {
 }
 
 .content-wrapper {
-  width: 100%;
+  position: relative;
+  width: auto;
   max-width: 32rem;
   padding: 2rem;
   margin: 0 auto;
