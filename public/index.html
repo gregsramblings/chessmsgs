@@ -1,11 +1,23 @@
 <!doctype html>
 <html>
 <head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-21NK7QYW16"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-21NK7QYW16');
+</script>
+	
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="Description" content="Play Chess over Twitter, SMS, iMessage, Facebook, Snap, Whatsapp, Google Chat. WeChat, Telegram, KaTalk, Viber, and many more.">
 
 <meta charset="utf-8" />
 <title>ChessMsgs.com</title>
-<link rel="stylesheet" href="css/chessmsgs.css?v=38">
+<link rel="stylesheet" href="css/chessmsgs.css?v=42">
 <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
 
 <ameta name="twitter:card" 			content="summary_large_image"/>
@@ -24,12 +36,12 @@
 </head>
 <div id="title">
 	<h1>ChessMsgs.com</h1>
-	<p>Correspondence Chess over message & social apps</p>
+	<p>Play Chess over Twitter, SMS, iMessage, Facebook, Snap, Whatsapp, Google Chat, WeChat, Telegram, KaTalk, Viber, and any service where web links can be exchanged.</p>
 </div>
 <div id="instructions">
 	<ol>
 		<li>Make your move</li>
-		<li>Press the copy button to copy your move</li>
+		<li>Press the copy button</li>
 		<li>Paste into the messaging/social app</li>
 	</ol>
 </div>
@@ -45,6 +57,7 @@
 <br>
 
 <div id="buttons">
+<button id="showInstructionsBtn">Show instructions</button>
 <button id="flipOrientationBtn">Flip orientation</button>
 <button id="copyToClipboardBtn">Copy to clipboard</button>
 </div>
@@ -54,7 +67,7 @@
 <script src="chess.js/chess.js"></script>
 
 <script src="js/bodyScrollLock.min.js"></script>
-<script src="js/chessmsgs.js?v=22"></script>
+<script src="js/chessmsgs.js?v=23"></script>
 
 </body>
 </html>

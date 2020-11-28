@@ -8,27 +8,25 @@ html {
 
 #myBoard {
  width: 100%; 
- max-width: 600px
+ max-width: 500px
 }
 
 #title {
   width: 100%;
-  max-width: 600px;
-  text-align: center;
+  max-width: 500px;
 }
 
 #instructions {
   width: 100%;
-  max-width: 600px
+  max-width: 500px
 }
 
 #buttons {
   width:100%; 
-  max-width: 600px; 
-  text-align: center
+  max-width: 500px; 
 }
 
-#copyToClipboardBtn {
+#copyToClipboardBtn, #showInstructionsBtn {
   display:none;
 }
 

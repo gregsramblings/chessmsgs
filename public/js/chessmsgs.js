@@ -8,9 +8,9 @@ var $lastMove = $('#lastMove')
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
 
-var startFen  = urlParams.get('fen')
-var lastFrom  = urlParams.get('from')
-var lastTo    = urlParams.get('to')
+var startFen = urlParams.get('fen')
+var lastFrom = urlParams.get('from')
+var lastTo = urlParams.get('to')
 
 var url = new URL(window.location)
 
@@ -23,19 +23,21 @@ var moveComplete = false;
 var whiteSquareGrey = '#a9ffa9'
 var blackSquareGrey = '#69af69'
 
-var game; 
+var game;
 
-if(startFen) {
-  document.getElementById("title").style.display = "none";
-  document.getElementById("instructions").style.display = "none";
+if (startFen) {
+  $("#title").hide();
+  $("#instructions").hide();
+  $("#showInstructionsBtn").show();
 }
 
 
-function removeGreySquares () {
+function removeGreySquares() {
   $('#myBoard .square-55d63').css('background', '')
 }
 
-function greySquare (square) {
+
+function greySquare(square) {
   var $square = $('#myBoard .square-' + square)
 
   var background = whiteSquareGrey
@@ -46,7 +48,8 @@ function greySquare (square) {
   $square.css('background', background)
 }
 
-function onMouseoverSquare (square, piece) {
+
+function onMouseoverSquare(square, piece) {
   if (moveComplete) return false
 
   // get list of possible moves for this square
@@ -67,26 +70,28 @@ function onMouseoverSquare (square, piece) {
   }
 }
 
-function onMouseoutSquare (square, piece) {
+
+function onMouseoutSquare(square, piece) {
   removeGreySquares()
 }
 
-function onDragStart (source, piece, position, orientation) {
+
+function onDragStart(source, piece, position, orientation) {
   // do not pick up pieces if the game is over
   if (game.game_over()) return false
   if (moveComplete) return false
   // only pick up pieces for the side to move
   if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-      (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+    (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
     return false
   }
   disableBodyScroll(targetElement);
-  onMouseoverSquare(source,piece)
+  onMouseoverSquare(source, piece)
 }
 
 
-function onDrop (source, target) {
-  
+function onDrop(source, target) {
+
   enableBodyScroll(targetElement);
   removeGreySquares()
 
@@ -106,18 +111,19 @@ function onDrop (source, target) {
   moveTo = target
   updateStatus()
   moveComplete = true;
-  $('#copyToClipboardBtn').css('display', 'inline')
+  $('#copyToClipboardBtn').show();
 
   $status.html("Copy & paste URL to opponent")
 }
 
-// update the board position after the piece snap
-// for castling, en passant, pawn promotion
-function onSnapEnd () {
+
+// update the board position after the piece snap for castling, en passant, pawn promotion
+function onSnapEnd() {
   board.position(game.fen())
 }
 
-function updateStatus () {
+
+function updateStatus() {
   var status = ''
 
   var moveColor = 'White'
@@ -144,7 +150,7 @@ function updateStatus () {
       status += ', ' + moveColor + ' is in check'
     }
 
-    if(game.fen() != "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {
+    if (game.fen() != "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {
       url.searchParams.set('fen', game.fen());
       if (moveFrom) url.searchParams.set('from', moveFrom);
       if (moveTo) url.searchParams.set('to', moveTo);
@@ -154,12 +160,13 @@ function updateStatus () {
   }
 
   if (lastFrom) $lastMove.html(lastFrom + ' → ' + lastTo)
-    
+
 
   $status.html(status)
   $fen.html(game.fen())
   $pgn.html(game.pgn())
 }
+
 
 function copyToClipboard() {
   navigator.clipboard.writeText(window.location)
@@ -167,10 +174,17 @@ function copyToClipboard() {
 
 }
 
-if(startFen) {
-  game = new Chess(startFen)  // Start at passed position
+
+function showInstructions() {
+  $('#title').show()
+  $('#instructions').show()
+  $('#showInstructionsBtn').hide()
+}
+
+if (startFen) {
+  game = new Chess(startFen) // Start at passed position
 } else {
-  game = new Chess()          // Default starting board
+  game = new Chess() // Default starting board
 }
 
 var config = {
@@ -184,15 +198,15 @@ var config = {
 }
 board = Chessboard('myBoard', config)
 
-if(startFen) board.position(startFen,false)
-if(game.turn() == "b") board.orientation('black')
+if (startFen) board.position(startFen, false)
+if (game.turn() == "b") board.orientation('black')
 
 updateStatus()
 
 // Highlight last move
-if(lastTo) greySquare(lastTo)
-if(lastFrom) greySquare(lastFrom)
-setTimeout(removeGreySquares,3000) 
+if (lastTo) greySquare(lastTo)
+if (lastFrom) greySquare(lastFrom)
+setTimeout(removeGreySquares, 3000)
 
 // Total hack to workaround Chrome iOS bug
 const disableBodyScroll = bodyScrollLock.disableBodyScroll;
@@ -200,7 +214,6 @@ const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 const targetElement = document.querySelector('#dummy');
 enableBodyScroll(targetElement);
 
+$('#showInstructionsBtn').on('click', showInstructions)
 $('#flipOrientationBtn').on('click', board.flip)
 $('#copyToClipboardBtn').on('click', copyToClipboard)
-
-
