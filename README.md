@@ -4,20 +4,20 @@ Created because I wanted to play chess with others without having to install sof
 
 ## Testing and deploying
 
-### There are three projects in this repo:
+#### There are three projects in this repo:
 * Main web server in project root
 * Web content in ./public
 * Image generator - ./image-generator
 
-### Local testing of server. Run from project root.
+#### Local testing of server. Run from project root.
 * Install packages with 'npm install', then run 'node index.js'
 * Access http://localhost:8080
 
-### Local testing of server as a container using Docker. Run from project root:
+#### Local testing of server as a container using Docker. Run from project root:
 * docker build -t gregcontainer .
 * docker run --publish 8000:8080 --detach gregcontainer
 
-### Deploying to Google Cloud Run
+#### Deploying to Google Cloud Run
 * gcloud builds submit --tag gcr.io/chessmsgs/chessmsgs
 * gcloud run deploy --image gcr.io/chessmsgs/chessmsgs --platform managed
 
@@ -37,7 +37,7 @@ Created because I wanted to play chess with others without having to install sof
 * [chess-image-generator](https://github.com/andyruwruw/chess-image-generator) - JavaScript library that creates a png from a [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) (standard chess board notation) - by [Andrew Young](https://andyruwruw.com/)
 * Written in Node.js - deployed on [Google Cloud Functions](https://cloud.google.com/functions)
 
-**Web Server8**  - simple Node/Express server with some super simple templating to create the Open Graph and Twitter Card image URLs, links, etc.  This could have easily been a static website other than this tiny requirement.
+**Web Server**  - simple Node/Express server with some super simple templating to create the Open Graph and Twitter Card image URLs, links, etc.  This could have easily been a static website other than this tiny requirement.
 
 * No database/data store -- all game state info is passed back and forth between players in URL
 * Deployed on [Google Cloud Run](https://cloud.google.com/run)
