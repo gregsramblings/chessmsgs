@@ -20,6 +20,8 @@ exports.createImage = (req, res) => {
 
 	createImage(imageGenerator).then((i) => {
 		res.setHeader('Content-Type', 'image/png');
+	    res.setHeader("Cache-Control", "public, max-age=604800"); // Set cache for 7 days
+
 		res.end(i);
 	})
 };
