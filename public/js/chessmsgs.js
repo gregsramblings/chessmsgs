@@ -80,11 +80,14 @@ function onDragStart (source, piece, position, orientation) {
       (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
     return false
   }
+  disableBodyScroll(targetElement);
   onMouseoverSquare(source,piece)
 }
 
 
 function onDrop (source, target) {
+  
+  enableBodyScroll(targetElement);
   removeGreySquares()
 
   // see if the move is legal
@@ -195,7 +198,7 @@ setTimeout(removeGreySquares,3000)
 const disableBodyScroll = bodyScrollLock.disableBodyScroll;
 const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 const targetElement = document.querySelector('#dummy');
-disableBodyScroll(targetElement);
+enableBodyScroll(targetElement);
 
 $('#flipOrientationBtn').on('click', board.flip)
 $('#copyToClipboardBtn').on('click', copyToClipboard)
