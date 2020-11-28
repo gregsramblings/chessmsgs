@@ -25,6 +25,12 @@ var blackSquareGrey = '#69af69'
 
 var game; 
 
+if(startFen) {
+  document.getElementById("title").style.display = "none";
+  document.getElementById("instructions").style.display = "none";
+}
+
+
 function removeGreySquares () {
   $('#myBoard .square-55d63').css('background', '')
 }
@@ -74,6 +80,7 @@ function onDragStart (source, piece, position, orientation) {
       (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
     return false
   }
+  onMouseoverSquare(source,piece)
 }
 
 
@@ -96,6 +103,8 @@ function onDrop (source, target) {
   moveTo = target
   updateStatus()
   moveComplete = true;
+  $('#copyToClipboardBtn').css('display', 'inline')
+
   $status.html("Copy & paste URL to opponent")
 }
 
@@ -151,6 +160,8 @@ function updateStatus () {
 
 function copyToClipboard() {
   navigator.clipboard.writeText(window.location)
+  $status.html("Copied! Now paste message to opponent.")
+
 }
 
 if(startFen) {
@@ -171,8 +182,14 @@ var config = {
 board = Chessboard('myBoard', config)
 
 if(startFen) board.position(startFen,false)
+if(game.turn() == "b") board.orientation('black')
 
 updateStatus()
+
+// Highlight last move
+if(lastTo) greySquare(lastTo)
+if(lastFrom) greySquare(lastFrom)
+setTimeout(removeGreySquares,3000) 
 
 // Total hack to workaround Chrome iOS bug
 const disableBodyScroll = bodyScrollLock.disableBodyScroll;

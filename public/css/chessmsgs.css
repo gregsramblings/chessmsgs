@@ -1,18 +1,38 @@
 body {
-  background-color: #222222;
+  background-color: #333333;
+  color: #e4e4e4;
   overflow: hidden; 
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
 }
 
 html {
-  height: -webkit-fill-available;
   overflow: hidden; 
-
 }
 
 #myBoard {
  overflow: hidden;
+ width: 100%; 
+ max-width: 600px
+}
+
+#title {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+#instructions {
+  width: 100%;
+  max-width: 600px
+}
+
+#buttons {
+  width:100%; 
+  max-width: 600px; 
+  text-align: center
+}
+
+#copyToClipboardBtn {
+  display:none;
 }
 
 label {
@@ -28,8 +48,10 @@ label {
 
 }
 
-div { color:#ffffff; }
-
 .notation-322f9 {
   font-size:11px;
+}
+
+h1,p,li {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }

@@ -5,7 +5,7 @@
 
 <meta charset="utf-8" />
 <title>ChessMsgs.com</title>
-<link rel="stylesheet" href="css/chessmsgs.css?v=30">
+<link rel="stylesheet" href="css/chessmsgs.css?v=37">
 <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
 
 <ameta name="twitter:card" 			content="summary_large_image"/>
@@ -21,11 +21,20 @@
 <meta property="og:image:width" 	content="180" />
 <meta property="og:image:height" 	content="180" />
 
-
 </head>
-
+<div id="title">
+	<h1>ChessMsgs.com</h1>
+	<p>Correspondence Chess over message & social apps</p>
+</div>
+<div id="instructions">
+	<ol>
+		<li>Make your move</li>
+		<li>Press the copy button to copy your move</li>
+		<li>Paste into the messaging/social app</li>
+	</ol>
+</div>
 <body>
-<div id="myBoard" style="width: 400px"></div>
+<div id="myBoard"></div>
 <br>
 <label>Status:</label>
 <div id="status"></div>
@@ -35,7 +44,7 @@
 <div id="dummy"></div>
 <br>
 
-<div style="width:400px" id="buttons">
+<div id="buttons">
 <button id="flipOrientationBtn">Flip orientation</button>
 <button id="copyToClipboardBtn">Copy to clipboard</button>
 </div>
@@ -45,9 +54,7 @@
 <script src="chess.js/chess.js"></script>
 
 <script src="js/bodyScrollLock.min.js"></script>
-<script src="js/chessmsgs.js?v=16"></script>
-
-
+<script src="js/chessmsgs.js?v=20"></script>
 
 </body>
 </html>
