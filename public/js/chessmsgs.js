@@ -113,7 +113,7 @@ function onDrop(source, target) {
   moveComplete = true;
   $('#copyToClipboardBtn').show();
 
-  $status.html("Copy & paste URL to opponent")
+  $status.html("Press copy button. Then paste to opponent.")
 }
 
 

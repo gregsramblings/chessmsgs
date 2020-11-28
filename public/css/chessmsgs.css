@@ -24,6 +24,7 @@ html {
 #buttons {
   width:100%; 
   max-width: 500px; 
+  text-align: center;
 }
 
 #copyToClipboardBtn, #showInstructionsBtn {
@@ -45,6 +46,18 @@ label {
 
 .notation-322f9 {
   font-size:11px;
+}
+
+.bigbutton {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 11px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  width: 31%;
 }
 
 h1,p,li {
