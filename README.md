@@ -1,5 +1,7 @@
 # chessmsgs - Play Chess over social and messaging apps
 
+Written by Greg Wilson - @gregsramblings - because I wanted to play chess with others without having to install software, create accounts, etc..
+
 ## Testing and deploying
 
 ### There are three projects in this repo:
@@ -20,11 +22,7 @@
 * gcloud run deploy --image gcr.io/chessmsgs/chessmsgs --platform managed
 
 
-## About
-
-Written by Greg Wilson - @gregsramblings - because I wanted to play chess with others without having to install software, create accounts, etc..
-
-### Technical details:
+## Technical details:
 
 **Web browser-side** - all chess logic is run in the browser. 
 
