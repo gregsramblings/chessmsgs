@@ -1,65 +1,95 @@
+:root {
+  --grey-color: #333333;
+  --tan-color: #f0d9b5;
+  --brown-color: #b58863;
+}
+
 body {
-  background-color: #333333;
-  color: #e4e4e4;
+  background-color: var(--grey-color);
+  color: white;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+  margin: 0;
 }
 
-html {
+h1,
+p {
+  margin-top: 0;
 }
 
-#myBoard {
- width: 100%; 
- max-width: 500px
+ol {
+  padding-left: 1.1rem;
 }
 
-#title {
+.content-wrapper {
   width: 100%;
-  max-width: 500px;
+  max-width: 32rem;
+  padding: 2rem;
+  margin: 0 auto;
 }
 
-#instructions {
-  width: 100%;
-  max-width: 500px
+.header__title {
+  margin-bottom: 0.5rem;
 }
 
-#buttons {
-  width:100%; 
-  max-width: 500px; 
-  text-align: center;
+.details {
+  margin: 1.5rem 0;
 }
 
-#copyToClipboardBtn, #showInstructionsBtn {
-  display:none;
+.details__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 0.5rem 0;
 }
 
-label {
+.details__title {
   color: #B4886B;
   font-weight: bold;
   text-align: right;
-  padding-right: 10px;
-  display: block;
-  width: 75px;
-  float: left;
-  overflow: hidden;
-  white-space: nowrap;
+  margin-right: 0.5rem;
+  text-transform: uppercase;
+  width: 50%;
+}
 
+.details__text {
+  width: 50%;
 }
 
 .notation-322f9 {
-  font-size:11px;
+  font-size: 11px;
 }
 
-.bigbutton {
-  background-color: #555555;
+.buttons {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button--copy,
+.button--instructions {
+  display: none;
+}
+
+.button {
+  color: var(--grey-color);
+  background-color: var(--tan-color);
   border: none;
-  color: white;
-  padding: 11px 9px;
+  padding: 0.8rem 1rem;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  width: 31%;
+  font-size: 0.8rem;
+  flex: 1;
+  margin: 0 0.25rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.25s;
 }
 
-h1,p,li {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+.button:focus,
+.button:hover {
+  background-color: var(--brown-color);
+  transition: background-color 0.25s;
+  outline: none;
 }
