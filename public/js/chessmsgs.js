@@ -1,5 +1,7 @@
 var board = null
 
+console.log("HHHHHH")
+
 var $status = $('[data-status]')
 var $lastMove = $('[data-last-move]')
 var $instructions = $('[data-instructions]')
@@ -176,6 +178,8 @@ function updateStatus() {
 
 function openCopyModal() {
   $modal.addClass('modal--is-visible')
+  $status.html("Ready to copy")
+
   disableBodyScroll(targetElement);
 }
 
@@ -197,12 +201,12 @@ function undoMove() {
 }
 
 function initClickListeners() {
+
   $modalClose.on('click', () => {
     closeCopyModal()
     undoMove();
   })
 
-  //$modalOverlay.on('click', closeCopyModal)
   $showInstructionsBtn.on('click', showInstructions)
   $flipOrientationBtn.on('click', board.flip)
   $copyUrlBtn.on('click', copyToClipboard)
@@ -216,7 +220,8 @@ function initClickListeners() {
 
 function copyToClipboard() {
   navigator.clipboard.writeText(window.location)
-  $status.html("Copied - Now paste to opponent.")
+
+  $status.html("Copied - Paste to opponent!")
 }
 
 function showInstructions() {
@@ -260,3 +265,4 @@ const disableBodyScroll = bodyScrollLock.disableBodyScroll;
 const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 const targetElement = document.querySelector('#dummy');
 enableBodyScroll(targetElement);
+
