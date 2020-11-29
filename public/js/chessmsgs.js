@@ -93,6 +93,8 @@ function onDragStart(source, piece, position, orientation) {
     (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
     return false
   }
+  
+  $("html").addClass('no-scroll')
   disableBodyScroll(targetElement)
 
   onMouseoverSquare(source, piece)
@@ -100,6 +102,7 @@ function onDragStart(source, piece, position, orientation) {
 
 function onDrop(source, target) {
 
+  $("html").removeClass('no-scroll')
   enableBodyScroll(targetElement)
   removeGreySquares()
 
@@ -185,11 +188,13 @@ function openCopyModal() {
   $modal.addClass('modal--is-visible')
   $status.html("Ready to copy")
   $lastMove.html(moveFrom + ' → ' + moveTo)
+  $("html").addClass('no-scroll')
   disableBodyScroll(targetElement)
 }
 
 function closeCopyModal() {
   $modal.removeClass('modal--is-visible')
+  $("html").removeClass('no-scroll')
   enableBodyScroll(targetElement)
 
 }

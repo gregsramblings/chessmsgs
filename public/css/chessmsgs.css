@@ -5,9 +5,7 @@
   --brown-color: #b58863;
 }
 
-html {
-  height: 100%;
-}
+html, body {margin: 0; height: 100%; overflow: visible}
 
 body {
   background-color: var(--grey-color);
@@ -228,4 +226,7 @@ a {
   .details__text {
     width: 76%;
   }
+
+  html, body {overflow: visible}
+
 }
