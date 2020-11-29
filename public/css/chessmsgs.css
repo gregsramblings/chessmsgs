@@ -5,6 +5,10 @@
   --brown-color: #b58863;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: var(--grey-color);
   color: white;
@@ -12,6 +16,7 @@ body {
   line-height: 1.4;
   margin: 0;
   width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -34,6 +39,10 @@ input:focus {
 
 a {
   color: #cccccc;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 .content-wrapper {
