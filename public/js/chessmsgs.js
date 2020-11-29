@@ -1,7 +1,5 @@
 var board = null
 
-console.log("HHHHHH")
-
 var $status = $('[data-status]')
 var $lastMove = $('[data-last-move]')
 var $instructions = $('[data-instructions]')
@@ -96,12 +94,15 @@ function onDragStart(source, piece, position, orientation) {
     return false
   }
   disableBodyScroll(targetElement);
+  $('body').addClass('no-scroll')
+
   onMouseoverSquare(source, piece)
 }
 
 function onDrop(source, target) {
 
   enableBodyScroll(targetElement);
+  $('body').removeClass('no-scroll')
   removeGreySquares()
 
   // see if the move is legal
@@ -181,11 +182,14 @@ function openCopyModal() {
   $status.html("Ready to copy")
   $lastMove.html(moveFrom + ' → ' + moveTo)
   disableBodyScroll(targetElement);
+  $('body').addClass('no-scroll')
 }
 
 function closeCopyModal() {
   $modal.removeClass('modal--is-visible')
   enableBodyScroll(targetElement);
+  $('body').addClass('no-scroll')
+
 }
 
 function undoMove() {
@@ -233,6 +237,7 @@ function showInstructions() {
 if (startFen) {
   game = new Chess(startFen) // Start at passed position
 } else {
+  startFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
   game = new Chess() // Default starting board
 }
 
