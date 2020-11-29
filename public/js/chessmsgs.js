@@ -4,6 +4,10 @@ var $status = $('[data-status]')
 var $lastMove = $('[data-last-move]')
 var $instructions = $('[data-instructions]')
 var $header = $('[data-header]')
+var $modal = $('[data-modal]')
+var $modalClose = $('[data-modal-close]')
+var $modalOverlay = $('[data-modal-overlay]')
+var $copyInput = $('[data-copy-input]')
 
 // Buttons
 var $showInstructionsBtn = $('[data-btn-show-instructions]')
@@ -39,11 +43,9 @@ if (startFen) {
   $showInstructionsBtn.show();
 }
 
-
 function removeGreySquares() {
   $('#myBoard .square-55d63').css('background', '')
 }
-
 
 function greySquare(square) {
   var $square = $('#myBoard .square-' + square)
@@ -55,7 +57,6 @@ function greySquare(square) {
 
   $square.css('background', background)
 }
-
 
 function onMouseoverSquare(square, piece) {
   if (moveComplete) return false
@@ -78,11 +79,9 @@ function onMouseoverSquare(square, piece) {
   }
 }
 
-
 function onMouseoutSquare(square, piece) {
   removeGreySquares()
 }
-
 
 function onDragStart(source, piece, position, orientation) {
   // do not pick up pieces if the game is over
@@ -96,7 +95,6 @@ function onDragStart(source, piece, position, orientation) {
   disableBodyScroll(targetElement);
   onMouseoverSquare(source, piece)
 }
-
 
 function onDrop(source, target) {
 
@@ -124,12 +122,12 @@ function onDrop(source, target) {
 
 }
 
-
 // update the board position after the piece snap for castling, en passant, pawn promotion
 function onSnapEnd() {
   board.position(game.fen())
+  $copyInput.val(window.location)
+  toggleCopyModal()
 }
-
 
 function updateStatus() {
   var status = ''
@@ -170,19 +168,28 @@ function updateStatus() {
 
   if (lastFrom) $lastMove.html(lastFrom + ' → ' + lastTo)
 
-
   $status.html(status)
   $fen.html(game.fen())
   $pgn.html(game.pgn())
 }
 
+function toggleCopyModal() {
+  $modal.toggleClass('modal--is-visible')
+  $('body').toggleClass('no-scroll')
+}
+
+function initClickListeners() {
+  $modalClose.on('click', toggleCopyModal)
+  $modalOverlay.on('click', toggleCopyModal)
+  $showInstructionsBtn.on('click', showInstructions)
+  $flipOrientationBtn.on('click', board.flip)
+  $copyUrlBtn.on('click', copyToClipboard)
+}
 
 function copyToClipboard() {
   navigator.clipboard.writeText(window.location)
   $status.html("Copied! Now paste message to opponent.")
-
 }
-
 
 function showInstructions() {
   $header.show()
@@ -205,12 +212,14 @@ var config = {
   onDrop: onDrop,
   onSnapEnd: onSnapEnd
 }
+
 board = Chessboard('myBoard', config)
 
 if (startFen) board.position(startFen, false)
 if (game.turn() == "b") board.orientation('black')
 
 updateStatus()
+initClickListeners()
 
 // Highlight last move
 if (lastTo) greySquare(lastTo)
@@ -222,7 +231,3 @@ const disableBodyScroll = bodyScrollLock.disableBodyScroll;
 const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 const targetElement = document.querySelector('#dummy');
 enableBodyScroll(targetElement);
-
-$showInstructionsBtn.on('click', showInstructions)
-$flipOrientationBtn.on('click', board.flip)
-$copyUrlBtn.on('click', copyToClipboard)
