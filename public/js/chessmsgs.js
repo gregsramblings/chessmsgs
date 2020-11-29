@@ -18,8 +18,8 @@ var $copyUrlBtn = $('[data-btn-copy-url]')
 var $fen = $('#fen')
 var $pgn = $('#pgn')
 
-var queryString = window.location.search;
-var urlParams = new URLSearchParams(queryString);
+var queryString = window.location.search
+var urlParams = new URLSearchParams(queryString)
 
 var startFen = urlParams.get('fen')
 var lastFrom = urlParams.get('from')
@@ -30,18 +30,18 @@ var url = new URL(window.location)
 var moveFrom = null
 var moveTo = null
 
-var moveComplete = false;
+var moveComplete = false
 
 
 var whiteSquareGrey = '#a9ffa9'
 var blackSquareGrey = '#69af69'
 
-var game;
+var game
 
 if (startFen) {
-  $header.hide();
-  $instructions.hide();
-  $showInstructionsBtn.show();
+  $header.hide()
+  $instructions.hide()
+  $showInstructionsBtn.show()
 }
 
 function removeGreySquares() {
@@ -93,14 +93,14 @@ function onDragStart(source, piece, position, orientation) {
     (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
     return false
   }
-  disableBodyScroll(targetElement);
+  disableBodyScroll(targetElement)
 
   onMouseoverSquare(source, piece)
 }
 
 function onDrop(source, target) {
 
-  enableBodyScroll(targetElement);
+  enableBodyScroll(targetElement)
   removeGreySquares()
 
   // see if the move is legal
@@ -119,8 +119,8 @@ function onDrop(source, target) {
   moveTo = target
   
   updateStatus()
-  moveComplete = true;
-  $copyUrlBtn.show();
+  moveComplete = true
+  $copyUrlBtn.show()
 
 }
 
@@ -160,14 +160,20 @@ function updateStatus() {
 
   }
 
-  if (game.fen() != "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {
-    url.searchParams.set('fen', game.fen());
-    if (moveFrom) url.searchParams.set('from', moveFrom);
-    if (moveTo) url.searchParams.set('to', moveTo);
+  if (game.fen() == "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") { // If initial board
+      url.searchParams.delete('to')
+      url.searchParams.delete('from')
+      url.searchParams.delete('fen')
+  } else {
+    url.searchParams.set('fen', game.fen())
+    if (moveTo) {
+      url.searchParams.set('to', moveTo)
+      url.searchParams.set('from', moveFrom)
+    } 
+  }    
 
-    window.history.pushState({}, '', url);
-  }
-
+  window.history.pushState({}, '', url)
+  
   if (lastFrom) $lastMove.html(lastFrom + ' → ' + lastTo)
 
   $status.html(status)
@@ -179,23 +185,29 @@ function openCopyModal() {
   $modal.addClass('modal--is-visible')
   $status.html("Ready to copy")
   $lastMove.html(moveFrom + ' → ' + moveTo)
-  disableBodyScroll(targetElement);
+  disableBodyScroll(targetElement)
 }
 
 function closeCopyModal() {
   $modal.removeClass('modal--is-visible')
-  enableBodyScroll(targetElement);
+  enableBodyScroll(targetElement)
 
 }
 
 function undoMove() {
   board.position(startFen)
   game.load(startFen)
-  if(lastTo) moveTo = lastTo;
-  if(lastFrom) moveFrom = lastFrom;
-  if (lastFrom) $lastMove.html(lastFrom + ' → ' + lastTo)
+  if (lastTo) {
+    moveTo = lastTo 
+    moveFrom = lastFrom
+    $lastMove.html(lastFrom + ' → ' + lastTo)
+  } else {
+    moveTo = null
+    moveFrom = null
+  }
+
   updateStatus()
-  moveComplete = false;
+  moveComplete = false
 
   $status.html("Move undone")
 
@@ -205,7 +217,7 @@ function initClickListeners() {
 
   $modalClose.on('click', () => {
     closeCopyModal()
-    undoMove();
+    undoMove()
   })
 
   $showInstructionsBtn.on('click', showInstructions)
@@ -262,8 +274,8 @@ if (lastFrom) greySquare(lastFrom)
 setTimeout(removeGreySquares, 3000)
 
 // Total hack to workaround Chrome iOS bug
-const disableBodyScroll = bodyScrollLock.disableBodyScroll;
-const enableBodyScroll = bodyScrollLock.enableBodyScroll;
-const targetElement = document.querySelector('#dummy');
-enableBodyScroll(targetElement);
+const disableBodyScroll = bodyScrollLock.disableBodyScroll
+const enableBodyScroll = bodyScrollLock.enableBodyScroll
+const targetElement = document.querySelector('#dummy')
+enableBodyScroll(targetElement)
 
