@@ -191,8 +191,9 @@ function closeCopyModal() {
 function undoMove() {
   board.position(startFen)
   game.load(startFen)
-  moveTo = lastTo;
-  moveFrom = lastFrom;
+  if(lastTo) moveTo = lastTo;
+  if(lastFrom) moveFrom = lastFrom;
+  if (lastFrom) $lastMove.html(lastFrom + ' → ' + lastTo)
   updateStatus()
   moveComplete = false;
 
