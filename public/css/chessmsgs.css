@@ -71,6 +71,10 @@ input:focus {
   width: 30%;
 }
 
+.details__text {
+  width: 70%;
+}
+
 .notation-322f9 {
   font-size: 11px;
 }
@@ -203,5 +207,9 @@ input:focus {
 @media screen and (min-width: 32em) {
   .details__title {
     width: 24%;
+  }
+
+  .details__text {
+    width: 76%;
   }
 }
