@@ -182,7 +182,6 @@ function openCopyModal() {
 function closeCopyModal() {
   $modal.removeClass('modal--is-visible')
   enableBodyScroll(targetElement);
-  undoMove();
 }
 
 function undoMove() {
@@ -198,7 +197,11 @@ function undoMove() {
 }
 
 function initClickListeners() {
-  $modalClose.on('click', closeCopyModal)
+  $modalClose.on('click', () => {
+    closeCopyModal()
+    undoMove();
+  })
+
   //$modalOverlay.on('click', closeCopyModal)
   $showInstructionsBtn.on('click', showInstructions)
   $flipOrientationBtn.on('click', board.flip)
