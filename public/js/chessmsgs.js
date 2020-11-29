@@ -8,6 +8,7 @@ var $modal = $('[data-modal]')
 var $modalClose = $('[data-modal-close]')
 var $modalOverlay = $('[data-modal-overlay]')
 var $copyInput = $('[data-copy-input]')
+var $modalCopyUrlBtn = $('[data-modal-copy-url]')
 
 // Buttons
 var $showInstructionsBtn = $('[data-btn-show-instructions]')
@@ -184,6 +185,12 @@ function initClickListeners() {
   $showInstructionsBtn.on('click', showInstructions)
   $flipOrientationBtn.on('click', board.flip)
   $copyUrlBtn.on('click', copyToClipboard)
+  $modalCopyUrlBtn.on('click', () => {
+    copyToClipboard()
+    setTimeout(() => {
+      toggleCopyModal()
+    }, 2000)
+  })
 }
 
 function copyToClipboard() {
