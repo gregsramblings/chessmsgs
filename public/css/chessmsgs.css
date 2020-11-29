@@ -10,6 +10,8 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.4;
   margin: 0;
+  width: 100%;
+  position: relative;
 }
 
 h1,
@@ -24,9 +26,10 @@ ol {
 .content-wrapper {
   position: relative;
   width: 100%;
-  max-width: 32rem;
+  max-width: 32em;
   padding: 2rem;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .header__title {
@@ -93,7 +96,7 @@ ol {
   outline: none;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 32em) {
   .buttons {
     display: flex;
     justify-content: space-between;
