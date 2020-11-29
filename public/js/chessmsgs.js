@@ -216,7 +216,7 @@ function initClickListeners() {
 
 function copyToClipboard() {
   navigator.clipboard.writeText(window.location)
-  $status.html("Copied! Now paste message to opponent.")
+  $status.html("Copied - Now paste to opponent.")
 }
 
 function showInstructions() {
