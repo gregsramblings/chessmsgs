@@ -15,11 +15,6 @@ body {
   position: relative;
 }
 
-body.no-scroll {
-  height: 100vh;
-  overflow: hidden;
-}
-
 h1,
 p {
   margin-top: 0;
@@ -187,7 +182,7 @@ input:focus {
 
 .modal__close {
   color: #aaaaaa;
-  font-size: 1.8em;
+  font-size: 1.0em;
   font-weight: bold;
   position: absolute;
   right: 1rem;

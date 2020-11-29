@@ -127,7 +127,7 @@ function onDrop(source, target) {
 function onSnapEnd() {
   board.position(game.fen())
   $copyInput.val(window.location)
-  toggleCopyModal()
+  openCopyModal()
 }
 
 function updateStatus() {
@@ -174,21 +174,34 @@ function updateStatus() {
   $pgn.html(game.pgn())
 }
 
-function toggleCopyModal() {
-  $modal.toggleClass('modal--is-visible')
-  $('body').toggleClass('no-scroll')
+function openCopyModal() {
+  $modal.addClass('modal--is-visible')
+  disableBodyScroll(targetElement);
+}
+
+function closeCopyModal() {
+  $modal.removeClass('modal--is-visible')
+  enableBodyScroll(targetElement);
+  undoMove();
+}
+
+function undoMove() {
+  board.position(startFen)
+  game.load(startFen)
+  moveComplete = false;
+  $status.html("Move undone")
 }
 
 function initClickListeners() {
-  $modalClose.on('click', toggleCopyModal)
-  $modalOverlay.on('click', toggleCopyModal)
+  $modalClose.on('click', closeCopyModal)
+  //$modalOverlay.on('click', closeCopyModal)
   $showInstructionsBtn.on('click', showInstructions)
   $flipOrientationBtn.on('click', board.flip)
   $copyUrlBtn.on('click', copyToClipboard)
   $modalCopyUrlBtn.on('click', () => {
     copyToClipboard()
     setTimeout(() => {
-      toggleCopyModal()
+      closeCopyModal()
     }, 2000)
   })
 }
@@ -217,7 +230,8 @@ var config = {
   onMouseoutSquare: onMouseoutSquare,
   onMouseoverSquare: onMouseoverSquare,
   onDrop: onDrop,
-  onSnapEnd: onSnapEnd
+  onSnapEnd: onSnapEnd,
+  moveSpeed: 'slow'
 }
 
 board = Chessboard('myBoard', config)
