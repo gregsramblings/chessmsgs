@@ -179,7 +179,7 @@ function updateStatus() {
 function openCopyModal() {
   $modal.addClass('modal--is-visible')
   $status.html("Ready to copy")
-
+  $lastMove.html(moveFrom + ' → ' + moveTo)
   disableBodyScroll(targetElement);
 }
 
@@ -211,17 +211,16 @@ function initClickListeners() {
   $flipOrientationBtn.on('click', board.flip)
   $copyUrlBtn.on('click', copyToClipboard)
   $modalCopyUrlBtn.on('click', () => {
-    copyToClipboard()
     setTimeout(() => {
       closeCopyModal()
     }, 2000)
+    copyToClipboard()  
   })
 }
 
 function copyToClipboard() {
-  navigator.clipboard.writeText(window.location)
-
   $status.html("Copied - Paste to opponent!")
+  navigator.clipboard.writeText(window.location)
 }
 
 function showInstructions() {
