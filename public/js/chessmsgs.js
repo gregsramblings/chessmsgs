@@ -188,8 +188,13 @@ function closeCopyModal() {
 function undoMove() {
   board.position(startFen)
   game.load(startFen)
+  moveTo = lastTo;
+  moveFrom = lastFrom;
+  updateStatus()
   moveComplete = false;
+
   $status.html("Move undone")
+
 }
 
 function initClickListeners() {
