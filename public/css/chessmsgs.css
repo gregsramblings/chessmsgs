@@ -1,6 +1,6 @@
 /* Global */
 :root {
-  --grey-color: #333333;
+  --grey-color: #282828;
   --tan-color: #f0d9b5;
   --brown-color: #b58863;
 }
@@ -30,6 +30,10 @@ input {
 
 input:focus {
   outline: none;
+}
+
+a {
+  color: #cccccc;
 }
 
 .content-wrapper {
@@ -197,6 +201,15 @@ input:focus {
   text-decoration: none;
   cursor: pointer;
   transition: color 0.25s;
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin-top: 2.8rem;
+  text-align: center;
+  color:#cccccc;
 }
 
 @media screen and (min-width: 32em) {
