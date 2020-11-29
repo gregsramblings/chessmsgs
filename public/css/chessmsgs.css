@@ -189,13 +189,15 @@ input:focus {
   right: 1rem;
   top: 1rem;
   line-height: 0.6em;
+  transition: color 0.25s;
 }
 
 .modal__close:hover,
 .modal__close:focus {
-  color: #000;
+  color: #757575;
   text-decoration: none;
   cursor: pointer;
+  transition: color 0.25s;
 }
 
 @media screen and (min-width: 32em) {
