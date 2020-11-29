@@ -94,7 +94,6 @@ function onDragStart(source, piece, position, orientation) {
     return false
   }
   disableBodyScroll(targetElement);
-  $('body').addClass('no-scroll')
 
   onMouseoverSquare(source, piece)
 }
@@ -102,7 +101,6 @@ function onDragStart(source, piece, position, orientation) {
 function onDrop(source, target) {
 
   enableBodyScroll(targetElement);
-  $('body').removeClass('no-scroll')
   removeGreySquares()
 
   // see if the move is legal
@@ -182,13 +180,11 @@ function openCopyModal() {
   $status.html("Ready to copy")
   $lastMove.html(moveFrom + ' → ' + moveTo)
   disableBodyScroll(targetElement);
-  $('body').addClass('no-scroll')
 }
 
 function closeCopyModal() {
   $modal.removeClass('modal--is-visible')
   enableBodyScroll(targetElement);
-  $('body').addClass('no-scroll')
 
 }
 
