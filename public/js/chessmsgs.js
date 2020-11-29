@@ -1,9 +1,17 @@
 var board = null
 
-var $status = $('#status')
+var $status = $('[data-status]')
+var $lastMove = $('[data-last-move]')
+var $instructions = $('[data-instructions]')
+var $header = $('[data-header]')
+
+// Buttons
+var $showInstructionsBtn = $('[data-btn-show-instructions]')
+var $flipOrientationBtn = $('[data-btn-flip-orientation]')
+var $copyUrlBtn = $('[data-btn-copy-url]')
+
 var $fen = $('#fen')
 var $pgn = $('#pgn')
-var $lastMove = $('#lastMove')
 
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
@@ -26,9 +34,9 @@ var blackSquareGrey = '#69af69'
 var game;
 
 if (startFen) {
-  $("#title").hide();
-  $("#instructions").hide();
-  $("#showInstructionsBtn").show();
+  $header.hide();
+  $instructions.hide();
+  $showInstructionsBtn.show();
 }
 
 
@@ -112,7 +120,7 @@ function onDrop(source, target) {
   
   updateStatus()
   moveComplete = true;
-  $('#copyToClipboardBtn').show();
+  $copyUrlBtn.show();
 
 }
 
@@ -177,9 +185,9 @@ function copyToClipboard() {
 
 
 function showInstructions() {
-  $('#title').show()
-  $('#instructions').show()
-  $('#showInstructionsBtn').hide()
+  $header.show()
+  $instructions.show()
+  $showInstructionsBtn.hide()
 }
 
 if (startFen) {
@@ -215,6 +223,6 @@ const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 const targetElement = document.querySelector('#dummy');
 enableBodyScroll(targetElement);
 
-$('#showInstructionsBtn').on('click', showInstructions)
-$('#flipOrientationBtn').on('click', board.flip)
-$('#copyToClipboardBtn').on('click', copyToClipboard)
+$showInstructionsBtn.on('click', showInstructions)
+$flipOrientationBtn.on('click', board.flip)
+$copyUrlBtn.on('click', copyToClipboard)
