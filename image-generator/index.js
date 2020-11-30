@@ -12,7 +12,7 @@ exports.createImage = (req, res) => {
 	console.log("|" + fen + "|");
 	var ChessImageGenerator = require('chess-image-generator');
 	var imageGenerator = new ChessImageGenerator({
-    	size: 180
+    	size: 256
 	});
 	if(fen == '') fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
