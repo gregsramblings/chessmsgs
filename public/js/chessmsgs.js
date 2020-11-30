@@ -2,8 +2,6 @@ var board = null
 
 var $status = $('[data-status]')
 var $lastMove = $('[data-last-move]')
-var $instructions = $('[data-instructions]')
-var $header = $('[data-header]')
 var $modal = $('[data-modal]')
 var $modalClose = $('[data-modal-close]')
 var $modalOverlay = $('[data-modal-overlay]')
@@ -11,7 +9,6 @@ var $copyInput = $('[data-copy-input]')
 var $modalCopyUrlBtn = $('[data-modal-copy-url]')
 
 // Buttons
-var $showInstructionsBtn = $('[data-btn-show-instructions]')
 var $flipOrientationBtn = $('[data-btn-flip-orientation]')
 var $copyUrlBtn = $('[data-btn-copy-url]')
 
@@ -37,12 +34,6 @@ var whiteSquareGrey = '#a9ffa9'
 var blackSquareGrey = '#69af69'
 
 var game
-
-if (startFen) {
-  $header.hide()
-  $instructions.hide()
-  $showInstructionsBtn.show()
-}
 
 function removeGreySquares() {
   $('#myBoard .square-55d63').css('background', '')
@@ -225,7 +216,6 @@ function initClickListeners() {
     undoMove()
   })
 
-  $showInstructionsBtn.on('click', showInstructions)
   $flipOrientationBtn.on('click', board.flip)
   $copyUrlBtn.on('click', copyToClipboard)
   $modalCopyUrlBtn.on('click', () => {
@@ -241,16 +231,11 @@ function copyToClipboard() {
   navigator.clipboard.writeText(window.location)
 }
 
-function showInstructions() {
-  $header.show()
-  $instructions.show()
-  $showInstructionsBtn.hide()
-}
-
 if (startFen) {
   game = new Chess(startFen) // Start at passed position
 } else {
   startFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+  $flipOrientationBtn.hide()
   game = new Chess() // Default starting board
 }
 

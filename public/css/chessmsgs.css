@@ -9,7 +9,7 @@ html, body {margin: 0; height: 100%; overflow: visible}
 
 body {
   background-color: var(--grey-color);
-  color: white;
+  color: #eeeeee;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.4;
   margin: 0;
@@ -92,8 +92,7 @@ a {
   justify-content: space-between;
 }
 
-.button--copy,
-.button--instructions {
+.button--copy {
   display: none;
 }
 
@@ -178,7 +177,7 @@ a {
 
 .modal__content {
   padding: 1.5rem;
-  color: white;
+  color: #eeeeee;
 }
 
 .modal .details__title {
@@ -213,7 +212,7 @@ a {
   left: 0;
   bottom: 0;
   width: 100%;
-  margin-top: 2.8rem;
+  margin-top: 1.0rem;
   text-align: center;
   color:#cccccc;
 }
