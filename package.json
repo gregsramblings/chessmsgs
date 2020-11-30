@@ -4,7 +4,7 @@
   "description": "ChessMsgs",
   "homepage": "https://chessmsgs.com",
   "license": "MIT",
-  "main": "index.js",
+  "main": "server.js",
   "version": "0.0.1",
   "repository": {
     "type": "git",

@@ -10,7 +10,7 @@ Created because I wanted to play chess with others without having to install sof
 * Image generator - ./image-generator
 
 #### Local testing of server. Run from project root.
-* Install packages with 'npm install', then run 'node index.js'
+* Install packages with 'npm install', then run 'node server.js'
 * Access http://localhost:8080
 
 #### Local testing of server as a container using Docker. Run from project root:
