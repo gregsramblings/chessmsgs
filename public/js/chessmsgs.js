@@ -235,7 +235,6 @@ if (startFen) {
   game = new Chess(startFen) // Start at passed position
 } else {
   startFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-  $flipOrientationBtn.hide()
   game = new Chess() // Default starting board
 }
 
@@ -262,6 +261,7 @@ initClickListeners()
 if (lastTo) greySquare(lastTo)
 if (lastFrom) greySquare(lastFrom)
 setTimeout(removeGreySquares, 3000)
+
 
 // Total hack to workaround Chrome iOS bug
 const disableBodyScroll = bodyScrollLock.disableBodyScroll

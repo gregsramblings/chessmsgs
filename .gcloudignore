@@ -14,4 +14,6 @@
 .gitignore
 
 node_modules
+image-generator
+
 #!include:.gitignore
