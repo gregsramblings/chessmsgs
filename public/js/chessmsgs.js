@@ -177,7 +177,7 @@ function updateStatus() {
 
 function openCopyModal() {
   $modal.addClass('modal--is-visible')
-  $status.html("Ready to copy")
+  $status.html("Moved " + moveFrom + " to " + moveTo)
   $lastMove.html(moveFrom + ' → ' + moveTo)
   $("html").addClass('no-scroll')
   disableBodyScroll(targetElement)
