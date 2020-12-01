@@ -7,7 +7,7 @@ Created because I wanted to play chess with others without having to install sof
 #### There are three projects in this repo:
 * Main web server in project root
 * Web content in ./public
-* Image generator - ./image-generator
+* Image generator in ./image-generator
 
 #### Local testing of server. Run from project root.
 * Install packages with 'npm install', then run 'node server.js'
