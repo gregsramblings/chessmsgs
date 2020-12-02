@@ -52,6 +52,15 @@ a {
   box-sizing: border-box;
 }
 
+.chessboard-image {
+  object-fit: cover;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-width: 32em;
+  box-sizing: border-box;
+}
+
 /* Header */
 .header__title {
   margin-bottom: 0.5rem;
