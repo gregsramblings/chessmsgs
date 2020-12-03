@@ -10,6 +10,7 @@ var fs = require('fs')
 
 var indexFileContent = fs.readFileSync('public/index.html', 'utf8')
 var ChessImageGenerator = require('chess-image-generator')
+
 var imageGenerator = new ChessImageGenerator({
 	size: 400
 });
