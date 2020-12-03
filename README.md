@@ -13,7 +13,7 @@ Created because I wanted to play chess with others without having to install sof
 
 **Web Server**  - simple Node/Express server with some super simple templating to create the Open Graph and Twitter Card image URLs, links, etc.  This could have easily been a static website other than this tiny requirement.
 
-* [request_ip](https://www.npmjs.com/package/request-ip) - Used for logging IP address of each move to use for future scaling (create additional copies in regions, etc.)
+* [request-ip](https://www.npmjs.com/package/request-ip) - Used for logging IP address of each move to use for future scaling (create additional copies in regions, etc.)
 * [nanoid](https://www.npmjs.com/package/nanoid) - Used to generate unique Game IDs
 * No database/data store -- all game state info is passed back and forth between players in URL
 * Deployed on [Google Cloud Run](https://cloud.google.com/run?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web)
@@ -39,7 +39,7 @@ Created because I wanted to play chess with others without having to install sof
 * docker run --publish 8000:8080 --detach gregcontainer
 
 #### Deploying to Google Cloud Run
-* gcloud builds submit --tag gcr.io/chessmsgs/chessmsgs
-* gcloud run deploy --image gcr.io/chessmsgs/chessmsgs --platform managed
+* npm run build
+* npm run deploy
 
 
