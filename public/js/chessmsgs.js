@@ -22,6 +22,10 @@ var startFen = urlParams.get('fen')
 var lastFrom = urlParams.get('from')
 var lastTo = urlParams.get('to')
 
+var gid = urlParams.get('gid')
+if (!gid) gid = $('#myBoard').attr('data-gid')
+if (!gid) gid = "Unknown"
+
 var url = new URL(window.location)
 
 var moveFrom = null
@@ -158,11 +162,13 @@ function updateStatus() {
       url.searchParams.delete('to')
       url.searchParams.delete('from')
       url.searchParams.delete('fen')
+      url.searchParams.delete('gid')
   } else {
     url.searchParams.set('fen', game.fen())
     if (moveTo) {
       url.searchParams.set('to', moveTo)
       url.searchParams.set('from', moveFrom)
+      url.searchParams.set('gid',gid)
     } 
   }    
 

@@ -209,8 +209,7 @@ a {
   transition: color 0.25s;
 }
 
-.modal__close:hover,
-.modal__close:focus {
+.modal__close:hover {
   color: #757575;
   text-decoration: none;
   cursor: pointer;

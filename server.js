@@ -1,26 +1,45 @@
 var compression = require('compression')
 var express = require('express')
 var app = express()
+var requestIp = require('request-ip');
+
 app.use(compression())
+app.use(requestIp.mw())
 
 var fs = require('fs')
+
 var indexFileContent = fs.readFileSync('public/index.html', 'utf8')
-var ChessImageGenerator = require('chess-image-generator');
+var ChessImageGenerator = require('chess-image-generator')
 var imageGenerator = new ChessImageGenerator({
 	size: 400
 });
 
+var nanoid = require('nanoid')
+
 async function createImage(img) {
-	const i = img.generateBuffer();
-	return i;
+	const i = img.generateBuffer()
+	return i
 }
 
 app.get('/', (req, res) => {
-	// World's tiniest template engine:
+
 	var fen = req.query.fen
-	if (!fen) fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+	if (fen) {
+		var from = req.query.from
+		var to = req.query.to
+		var gid = req.query.gid
+		console.log("GAME:" + gid + "|" + from + "|" + to + "|" + fen + "|" + req.clientIp)
+	} else {
+		fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+	}
+
+	// World's tiniest template engine:
 	var modifiedFileContent = indexFileContent.replace(/{{url}}/g, "https://chessmsgs.com" + req.url)
 		.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/" + encodeURI(fen) + ".png")
+	
+	if(req.url == '/') {
+		modifiedFileContent = modifiedFileContent.replace(/{{gid}}/g, nanoid.nanoid())
+	}
 
 	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
 	res.header('Expires', '-1')
