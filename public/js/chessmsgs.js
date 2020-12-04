@@ -22,9 +22,7 @@ var startFen = urlParams.get('fen')
 var lastFrom = urlParams.get('from')
 var lastTo = urlParams.get('to')
 
-var gid = urlParams.get('gid')
-if (!gid) gid = $('#myBoard').attr('data-gid')
-if (!gid) gid = "Unknown"
+var gid = urlParams.get('gid') || $('#myBoard').attr('data-gid') || "Unknown"
 
 var url = new URL(window.location)
 

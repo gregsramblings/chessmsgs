@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
 		var to = req.query.to
 		var gid = req.query.gid
 		console.log("GAME:" + gid + "|" + from + "|" + to + "|" + fen + "|" + req.clientIp)
+		console.log("UA:" + req.get('User-Agent'))
 	} else {
 		fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 	}
