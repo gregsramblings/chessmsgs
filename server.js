@@ -9,7 +9,7 @@ app.use(requestIp.mw())
 var fs = require('fs')
 
 var indexFileContent = fs.readFileSync('public/index.html', 'utf8')
-var ChessImageGenerator = require('chess-image-generator')
+var ChessImageGenerator = require('./chess-image-generator')
 
 var imageGenerator = new ChessImageGenerator({
 	size: 400
@@ -17,8 +17,8 @@ var imageGenerator = new ChessImageGenerator({
 
 var nanoid = require('nanoid')
 
-async function createImage(img) {
-	const i = img.generateBuffer()
+async function createImage(img, aspectMultiplier) {
+	const i = img.generateBuffer(aspectMultiplier)
 	return i
 }
 
@@ -30,7 +30,6 @@ app.get('/', (req, res) => {
 		var to = req.query.to
 		var gid = req.query.gid
 		console.log("GAME:" + gid + "|" + from + "|" + to + "|" + fen + "|" + req.clientIp)
-		console.log("UA:" + req.get('User-Agent'))
 	} else {
 		fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 	}
@@ -51,14 +50,17 @@ app.get('/', (req, res) => {
 
 app.get('/fenimg/*.png/', (req, res) => {
 
+	var fenImageAspectRatio = 2.1
+	// If the request is coming from Apple iMessage or Facebook, set the aspect ratio to 1:1 (yes, Apple uses this string in their UA - weird)
+	if(req.get('User-Agent').search("facebookexternalhit") >= 0) fenImageAspectRatio = 1.0
+
 	var fen = decodeURIComponent(req.url.substr(8)).split('.')[0];
 	
-	console.log("FEN:" + fen);
 	if(fen == '') fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; // New game board
 
 	imageGenerator.loadFEN(fen);	
 
-	createImage(imageGenerator).then((i) => {
+	createImage(imageGenerator,fenImageAspectRatio).then((i) => {
 		res.setHeader('Content-Type', 'image/png');
 	    res.setHeader("Cache-Control", "public, max-age=604800"); // Set cache for 7 days
 
