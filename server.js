@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 app.get('/fenimg/*.png/', (req, res) => {
 
 	// Dynamically set aspect ratio based on which service is requesting the image
-	if(req.get('User-Agent').search("facebookexternalhit") >= 0) fenImageAspectRatio = 1.0 // Checking for Apple iMessage (weird string for Apple)
+	if(req.get('User-Agent').search("Facebot Twitterbot") >= 0) fenImageAspectRatio = 1.0 // Checking for Apple iMessage (weird string for Apple)
 	else if(req.get('User-Agent').search("Slack") >= 0) fenImageAspectRatio = 1.0 // Checking for Slack
 	else fenImageAspectRatio = 2.1 // Everything else looks best as 2.1
 

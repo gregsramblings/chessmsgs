@@ -122,9 +122,8 @@ a {
   width: auto;
 }
 
-.button:hover {
+.button:active {
   background-color: var(--brown-color);
-  transition: background-color 0.25s;
   outline: none;
 }
 
@@ -209,11 +208,10 @@ a {
   transition: color 0.25s;
 }
 
-.modal__close:hover {
+.modal__close:active {
   color: #757575;
   text-decoration: none;
   cursor: pointer;
-  transition: color 0.25s;
 }
 
 .footer {
@@ -233,6 +231,21 @@ a {
   .details__text {
     width: 76%;
   }
+
+  .button:hover {
+    background-color: var(--brown-color);
+    transition: background-color 0.25s;
+    outline: none;
+  }
+
+  .modal__close:hover {
+  color: #757575;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+
+
   html, body {overflow: visible}
 
 }
