@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 
 	// World's tiniest template engine:
 	var modifiedFileContent = indexFileContent.replace(/{{url}}/g, "https://chessmsgs.com" + req.url)
-		.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/" + encodeURI(fen) + ".png")
+		.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/v1/" + encodeURI(fen) + ".png")
 	
 	if(req.url == '/') {
 		modifiedFileContent = modifiedFileContent.replace(/{{gid}}/g, nanoid.nanoid())
@@ -48,14 +48,14 @@ app.get('/', (req, res) => {
 	res.send(modifiedFileContent)
 })
 
-app.get('/fenimg/*.png/', (req, res) => {
+app.get('/fenimg/v1/*.png/', (req, res) => {
 
 	// Dynamically set aspect ratio based on which service is requesting the image
 	if(req.get('User-Agent').search("Facebot Twitterbot") >= 0) fenImageAspectRatio = 1.0 // Checking for Apple iMessage (weird string for Apple)
 	else if(req.get('User-Agent').search("Slack") >= 0) fenImageAspectRatio = 1.0 // Checking for Slack
 	else fenImageAspectRatio = 2.1 // Everything else looks best as 2.1
 
-	var fen = decodeURIComponent(req.url.substr(8)).split('.')[0];
+	var fen = decodeURIComponent(req.url.substr(11)).split('.')[0];
 	
 	if(fen == '') fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; // New game board
 
