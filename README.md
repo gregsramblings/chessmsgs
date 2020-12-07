@@ -3,8 +3,7 @@
 Created because I wanted to play chess with others without having to install software, create accounts, etc.. Game play is simple -- make your move, copy and paste the URL to your opponent, etc.
 
 
-<img src="chessmsgs-screenshot.png" width="250">
-<img src="chessmsgs-screenshot2.png" width="250">
+<img src="chessmsgs-screenshot.png" width="250"> <img src="chessmsgs-screenshot2.png" width="250">
 
 ## Technical details:
 
