@@ -1,4 +1,5 @@
-# chessmsgs.com - Play Chess over social and messaging apps
+# chessmsgs.com
+# Play Chess over social and messaging apps
 
 Created because I wanted to play chess with others without having to install software, create accounts, etc.. Game play is simple -- make your move, copy and paste the URL to your opponent, etc.
 
@@ -39,9 +40,10 @@ npm install
 node server
 ```
 
-* Access http://localhost:8080
+* Access http://localhost:8080 to test. If you are running this on your own server, you'll need to change the URL hard-coding in server.js (replace "chessmsgs.com")
 
-#### Deploying to Google Cloud Run (you can also setup continuious deployment to auto-deploy when you push to a branch or tag using [Cloud Build](https://cloud.google.com/cloud-build))
+#### Deploying to [Google Cloud Run](https://cloud.google.com/run?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web)
+You can also setup continuious deployment to auto-deploy when you push to a branch or tag using [Cloud Build](https://cloud.google.com/cloud-build?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web))
 ```
 npm run build
 npm run deploy
