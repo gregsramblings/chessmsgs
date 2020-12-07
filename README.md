@@ -39,7 +39,7 @@ npm install
 node server
 ```
 
-* Access http://localhost:8080 to test. If you are running this on your own server, you'll need to change the URL hard-coding in server.js (replace "chessmsgs.com")
+Access http://localhost:8080 to test. If you are running this on your own server, you'll need to change the URL hard-coding in server.js (replace "chessmsgs.com")
 
 #### Deploying to [Google Cloud Run](https://cloud.google.com/run?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web)
 You can also setup continuious deployment to auto-deploy when you push to a branch or tag using [Cloud Build](https://cloud.google.com/cloud-build?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web))
