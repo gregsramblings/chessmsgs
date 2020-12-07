@@ -30,7 +30,7 @@ Created because I wanted to play chess with others without having to install sof
 * Main web server is in project root -- server.js
 * Web content is in ./public
 
-#### Local testing of server. Run from project root.
+#### Local testing of serve - run from project root.
 ```
 # Install all dependencies
 npm install
