@@ -89,7 +89,70 @@ ChessImageGenerator.prototype = {
    * Generates buffer image based on position
    * @returns {Buffer} Image buffer
    */
-  async generateBuffer(aspectMultiplier) {
+  async generateBuffer() {
+    if (!this.ready) {
+      throw new Error('Load a position first');
+    }
+
+    const canvas = createCanvas(this.size, this.size);
+    const ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    ctx.rect(
+      0,
+      0,
+      this.size,
+      this.size,
+    );
+    ctx.fillStyle = this.light;
+    ctx.fill();
+
+    for (let i = 0; i < 8; i += 1) {
+      for (let j = 0; j < 8; j += 1) {
+       
+        if ((i + j) % 2 === 0) {
+          ctx.beginPath();
+          ctx.rect(
+            ((this.size / 8) * ((7-j)+1))  - (this.size / 8),
+            ((this.size / 8) * (i)) ,
+            (this.size / 8) ,
+            (this.size / 8) 
+          );
+          ctx.fillStyle = this.dark;
+          ctx.fill();
+        }
+         
+        const piece = this.chess.get(cols[7 - j] + ((7 - i) + 1));
+         if (piece && piece.type !== '' && black.includes(piece.type.toLowerCase())) {
+          const image = `resources/${this.style}/${filePaths[`${piece.color}${piece.type}`]}.png`;
+          const imageFile = await loadImage(path.join(__dirname, image));
+          await ctx.drawImage(
+            imageFile,
+            ((this.size / 8) * ((7-j)+1))  - (this.size / 8),
+            ((this.size / 8) * (i)) ,
+            (this.size / 8) ,
+            (this.size / 8) 
+          );
+        }
+      }
+    }
+
+    const frame = new Frame(canvas, {
+      image: {
+        types: [
+          'png',
+        ],
+      },
+    });
+    return frame.toBuffer();
+  },
+
+
+  /**
+   * Customized version of generateBuffer() specific to ChessMsgs
+   * @returns {Buffer} Image buffer
+   */
+  async generateCustomBuffer(aspectMultiplier) {
     if (!this.ready) {
       throw new Error('Load a position first');
     }
@@ -152,6 +215,9 @@ ChessImageGenerator.prototype = {
     return frame.toBuffer();
   },
 
+
+
+
   /**
    * Generates PNG image based on position
    * @param {string} pngPath File name
@@ -179,3 +245,6 @@ ChessImageGenerator.prototype = {
 };
 
 module.exports = ChessImageGenerator;
+
+
+ 

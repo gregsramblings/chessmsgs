@@ -18,7 +18,7 @@ var imageGenerator = new ChessImageGenerator({
 var nanoid = require('nanoid')
 
 async function createImage(img, aspectMultiplier) {
-	const i = img.generateBuffer(aspectMultiplier)
+	const i = img.generateCustomBuffer(aspectMultiplier)
 	return i
 }
 
