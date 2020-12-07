@@ -48,7 +48,7 @@ npm run build
 npm run deploy
 ```
 
-#### Why Google Cloud Run?
+## Why Google Cloud Run?
 The hosting requirements are simple. I needed support for Node.js/Express, domain mapping, and SSL. There are several options on Google Cloud including [Compute Engine](https://cloud.google.com/compute?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web) (VMs), [App Engine](https://cloud.google.com/appengine?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web), and [Kubernetes Engine](https://cloud.google.com/kubernetes-engine?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web). For this app, however, I wanted to go completely serverless, which quickly led me to Cloud Run. Cloud Run is a managed platform that enables you to run stateless containers that are invocable via web requests or Pub/Sub events. 
 
 Cloud Run is also basically free for this type of project because the always-free-tier includes 180,000 vCPU-seconds, 360,000 GiB-seconds, and 2 million requests per month (as of this writing – see the [Cloud Run pricing page](https://cloud.google.com/run/pricing?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web) for the latest details). Even beyond the free tier, it’s very inexpensive for this type of app because you only pay while a request is being handled on your container instance, and my code is simple and fast.
