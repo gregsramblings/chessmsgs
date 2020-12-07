@@ -157,20 +157,24 @@ ChessImageGenerator.prototype = {
       throw new Error('Load a position first');
     }
     const imageWidth = this.size * aspectMultiplier;
-    xOffset = (imageWidth - this.size) / 2;
+    var padding = 0;
 
     const canvas = createCanvas(imageWidth, this.size);
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = "rgb(40,40,40)";
-    ctx.fillRect (0, 0, imageWidth, this.size);
+    // ctx.fillStyle = "rgb(200,40,40)";
+    // ctx.fillRect (0, 0, imageWidth, this.size);
 
+    if(aspectMultiplier > 1.0) padding = 12;
+
+    const boardSize = this.size - (padding*2)
+    const xOffset = (imageWidth - this.size) / 2;
 
     ctx.beginPath();
     ctx.rect(
-      xOffset,
-      0,
-      this.size,
-      this.size,
+      xOffset+padding,
+      0+padding,
+      boardSize,
+      boardSize,
     );
     ctx.fillStyle = this.light;
     ctx.fill();
@@ -181,10 +185,10 @@ ChessImageGenerator.prototype = {
         if ((i + j) % 2 === 0) {
           ctx.beginPath();
           ctx.rect(
-            ((this.size / 8) * ((7-j)+1))  - (this.size / 8) + xOffset,
-            ((this.size / 8) * (i)) ,
-            (this.size / 8) ,
-            (this.size / 8) 
+            ((boardSize / 8) * ((7-j)+1))  - (boardSize / 8) + xOffset + padding,
+            ((boardSize / 8) * (i)) + padding,
+            (boardSize / 8) ,
+            (boardSize / 8) 
           );
           ctx.fillStyle = this.dark;
           ctx.fill();
@@ -196,10 +200,10 @@ ChessImageGenerator.prototype = {
           const imageFile = await loadImage(path.join(__dirname, image));
           await ctx.drawImage(
             imageFile,
-            ((this.size / 8) * ((7-j)+1))  - (this.size / 8) + xOffset,
-            ((this.size / 8) * (i)) ,
-            (this.size / 8) ,
-            (this.size / 8) 
+            ((boardSize / 8) * ((7-j)+1))  - (boardSize / 8) + xOffset + padding,
+            ((boardSize / 8) * (i)) + padding,
+            (boardSize / 8) ,
+            (boardSize / 8) 
           );
         }
       }

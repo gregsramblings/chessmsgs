@@ -21,25 +21,29 @@ Created because I wanted to play chess with others without having to install sof
 **Image Server** - used to generate the image used for Open Graph and Twitter cards so that when a user posts a game link to most platforms, the platform will show the image with the current board position. I created an endpoint that looks like any other png file url ([example](https://chessmsgs.com/fenimg/rn1qkbnr/ppp1pppp/8/3p4/3P2b1/2N5/PPP1PPPP/R1BQKBNR%20w%20KQkq%20-%202%203.png)).
 
 * [chess-image-generator](https://github.com/andyruwruw/chess-image-generator) - JavaScript library that creates a png from a [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) (standard chess board notation) - by [Andrew Young](https://andyruwruw.com/)
+* I made a copy of generateBuffer() as generateCustomBuffer() and customized it to do padding to match Open Graph requirements
 * Deployed as a route in the web server Node express app
 
 ## Testing and deploying
 
-#### There are three projects in this repo:
-* Main web server in project root
-* Web content in ./public
-* Image generator in ./image-generator
+#### The parts
+* Main web server is in project root -- server.js
+* Web content is in ./public
 
 #### Local testing of server. Run from project root.
-* Install packages with 'npm install', then run 'node server.js'
+```
+# Install all dependencies
+npm install
+
+# Run server
+node server
+```
+
 * Access http://localhost:8080
 
-#### Local testing of server as a container using Docker. Run from project root:
-* docker build -t gregcontainer .
-* docker run --publish 8000:8080 --detach gregcontainer
-
-#### Deploying to Google Cloud Run
-* npm run build
-* npm run deploy
-
+#### Deploying to Google Cloud Run (you can also setup continuious deployment to auto-deploy when you push to a branch or tag using [Cloud Build](https://cloud.google.com/cloud-build))
+```
+npm run build
+npm run deploy
+```
 
