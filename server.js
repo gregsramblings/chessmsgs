@@ -30,13 +30,16 @@ app.get('/', (req, res) => {
 		var to = req.query.to
 		var gid = req.query.gid
 		console.log("GAME:" + gid + "|" + from + "|" + to + "|" + fen + "|" + req.clientIp)
+		// World's tiniest template engine:
+		var modifiedFileContent = indexFileContent.replace(/{{url}}/g, "https://chessmsgs.com" + req.url)
+			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/v1/" + encodeURI(fen) + ".png")
+
 	} else {
 		fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+		var modifiedFileContent = indexFileContent.replace(/{{url}}/g, "https://chessmsgs.com")
+			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/img/chessmsgs-site-banner.png")
 	}
 
-	// World's tiniest template engine:
-	var modifiedFileContent = indexFileContent.replace(/{{url}}/g, "https://chessmsgs.com" + req.url)
-		.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/v1/" + encodeURI(fen) + ".png")
 	
 	if(req.url == '/') {
 		modifiedFileContent = modifiedFileContent.replace(/{{gid}}/g, nanoid.nanoid())
