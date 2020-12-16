@@ -45,12 +45,16 @@ node server
 Access http://localhost:8080 to test. If you are running this on your own server, you'll need to change the URL hard-coding in server.js (replace "chessmsgs.com")
 
 #### Deploying to [Google Cloud Run](https://cloud.google.com/run?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web)
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)  
-You can also setup continuious deployment to auto-deploy when you push to a branch or tag using [Cloud Build](https://cloud.google.com/cloud-build?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web))
 ```
 npm run build
 npm run deploy
 ```
+
+or, build and deploy with a single click:
+
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)  
+You can also setup continuious deployment to auto-deploy when you push to a branch or tag using [Cloud Build](https://cloud.google.com/cloud-build?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web))
+
 
 ## Why Google Cloud Run?
 The hosting requirements are simple. I needed support for Node.js/Express, domain mapping, and SSL. There are several options on Google Cloud including [Compute Engine](https://cloud.google.com/compute?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web) (VMs), [App Engine](https://cloud.google.com/appengine?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web), and [Kubernetes Engine](https://cloud.google.com/kubernetes-engine?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web). For this app, however, I wanted to go completely serverless, which quickly led me to Cloud Run. Cloud Run is a managed platform that enables you to run stateless containers that are invocable via web requests or Pub/Sub events. 
