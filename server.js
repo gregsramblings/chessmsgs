@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 	} else {
 		fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 		var modifiedFileContent = indexFileContent.replace(/{{url}}/g, "https://chessmsgs.com")
-			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/img/chessmsgs-site-banner.png")
+			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/img/chessmsgs-site-banner.png?v1")
 	}
 
 	
