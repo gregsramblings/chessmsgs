@@ -32,21 +32,21 @@ var moveTo = null
 var moveComplete = false
 
 
-var whiteSquareGrey = '#a9ffa9'
-var blackSquareGrey = '#69af69'
+var whiteSquareGreen = '#a9ffa9'
+var blackSquareGreen = '#69af69'
 
 var game
 
-function removeGreySquares() {
+function removeGreenSquares() {
   $('#myBoard .square-55d63').css('background', '')
 }
 
-function greySquare(square) {
+function GreenSquare(square) {
   var $square = $('#myBoard .square-' + square)
 
-  var background = whiteSquareGrey
+  var background = whiteSquareGreen
   if ($square.hasClass('black-3c85d')) {
-    background = blackSquareGrey
+    background = blackSquareGreen
   }
 
   $square.css('background', background)
@@ -65,16 +65,16 @@ function onMouseoverSquare(square, piece) {
   if (moves.length === 0) return
 
   // highlight the square they moused over
-  greySquare(square)
+  GreenSquare(square)
 
   // highlight the possible squares for this piece
   for (var i = 0; i < moves.length; i++) {
-    greySquare(moves[i].to)
+    GreenSquare(moves[i].to)
   }
 }
 
 function onMouseoutSquare(square, piece) {
-  removeGreySquares()
+  removeGreenSquares()
 }
 
 function onDragStart(source, piece, position, orientation) {
@@ -97,7 +97,7 @@ function onDrop(source, target) {
 
   $("html").removeClass('no-scroll')
   enableBodyScroll(targetElement)
-  removeGreySquares()
+  removeGreenSquares()
 
   // see if the move is legal
   var move = game.move({
@@ -262,9 +262,9 @@ updateStatus()
 initClickListeners()
 
 // Highlight last move
-if (lastTo) greySquare(lastTo)
-if (lastFrom) greySquare(lastFrom)
-setTimeout(removeGreySquares, 3000)
+if (lastTo) GreenSquare(lastTo)
+if (lastFrom) GreenSquare(lastFrom)
+//setTimeout(removeGreenSquares, 3000)
 
 
 // Total hack to workaround Chrome iOS bug
