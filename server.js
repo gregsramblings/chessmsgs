@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 		console.log("GAME:" + gid + "|" + from + "|" + to + "|" + fen + "|" + req.clientIp)
 		// World's tiniest template engine:
 		var modifiedFileContent = indexFileContent.replace(/{{url}}/g, "https://chessmsgs.com" + req.url)
-			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/v1/" + encodeURI(fen) + ".png")
+			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/v2/" + encodeURI(fen) + ".png")
 
 	} else {
 		fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 	res.send(modifiedFileContent)
 })
 
-app.get('/fenimg/v1/*.png/', (req, res) => {
+app.get('/fenimg/v*/*.png/', (req, res) => {
 
 	// Dynamically set aspect ratio based on which service is requesting the image
 	if(req.get('User-Agent').search("Facebot Twitterbot") >= 0) fenImageAspectRatio = 1.0 // Checking for Apple iMessage (weird string for Apple)
