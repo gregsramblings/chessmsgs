@@ -12,7 +12,9 @@ var indexFileContent = fs.readFileSync('public/index.html', 'utf8')
 var ChessImageGenerator = require('./chess-image-generator')
 
 var imageGenerator = new ChessImageGenerator({
-	size: 400
+	size: 400,
+    light: "#f0d9b5",
+    dark: "#b58863"
 });
 
 var nanoid = require('nanoid')

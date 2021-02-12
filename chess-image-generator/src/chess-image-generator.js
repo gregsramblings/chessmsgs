@@ -147,7 +147,6 @@ ChessImageGenerator.prototype = {
     return frame.toBuffer();
   },
 
-
   /**
    * Customized version of generateBuffer() specific to ChessMsgs
    * @returns {Buffer} Image buffer
@@ -220,8 +219,6 @@ ChessImageGenerator.prototype = {
   },
 
 
-
-
   /**
    * Generates PNG image based on position
    * @param {string} pngPath File name
@@ -249,6 +246,3 @@ ChessImageGenerator.prototype = {
 };
 
 module.exports = ChessImageGenerator;
-
-
- 

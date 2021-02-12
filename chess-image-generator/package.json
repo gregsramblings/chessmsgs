@@ -1,34 +1,28 @@
 {
-  "_from": "chess-image-generator@^1.0.6",
-  "_id": "chess-image-generator@1.0.6",
-  "_inBundle": false,
-  "_integrity": "sha512-tBTPBxrc1mKMUExNy5AisIGntPHzUSnbUpZ8RFEtCK6gv1+hOp+YgMttM+HU7emxw7wnxEy/SvniFM2a5BVQDQ==",
-  "_location": "/chess-image-generator",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "range",
-    "registry": true,
-    "raw": "chess-image-generator@^1.0.6",
-    "name": "chess-image-generator",
-    "escapedName": "chess-image-generator",
-    "rawSpec": "^1.0.6",
-    "saveSpec": null,
-    "fetchSpec": "^1.0.6"
+  "name": "chess-image-generator",
+  "version": "1.0.9",
+  "description": "Generate images based on various forms of chess notation.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node ./test/index.js"
   },
-  "_requiredBy": [
-    "/"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andyruwruw/chessimage.git"
+  },
+  "keywords": [
+    "Chess",
+    "GIF",
+    "PNG",
+    "JPG",
+    "Image"
   ],
-  "_resolved": "https://registry.npmjs.org/chess-image-generator/-/chess-image-generator-1.0.6.tgz",
-  "_shasum": "8799d640de0118eddd8ad4f7c342384c78be1399",
-  "_spec": "chess-image-generator@^1.0.6",
-  "_where": "/Users/greg/chessmsgs",
-  "author": {
-    "name": "Andrew Young"
-  },
+  "author": "Andrew Young",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/andyruwruw/chessimage/issues"
   },
-  "bundleDependencies": false,
+  "homepage": "https://github.com/andyruwruw/chessimage#readme",
   "dependencies": {
     "canvas": "^2.6.1",
     "canvas-to-buffer": "^1.1.0",
@@ -36,31 +30,9 @@
     "fs": "0.0.1-security",
     "path": "^0.12.7"
   },
-  "deprecated": false,
-  "description": "Generate images based on various forms of chess notation.",
   "devDependencies": {
     "eslint": "^7.10.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1"
-  },
-  "homepage": "https://github.com/andyruwruw/chessimage#readme",
-  "keywords": [
-    "Chess",
-    "GIF",
-    "PNG",
-    "JPG",
-    "Image",
-    "Animation"
-  ],
-  "license": "MIT",
-  "main": "src/index.js",
-  "name": "chess-image-generator",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andyruwruw/chessimage.git"
-  },
-  "scripts": {
-    "test": "node ./test/index.js"
-  },
-  "version": "1.0.6"
+  }
 }

@@ -1,5 +1,5 @@
 <div align="center">
-    <image width="400" align="center"src="./documentation/logo.png"/><br/>
+    <img width="400" align="center"src="https://raw.githubusercontent.com/andyruwruw/chess-image-generator/master/documentation/logo.svg"/><br/>
 </div>
 
 <p align="center">Create PNG or Buffers of Chess Positions.</p>
