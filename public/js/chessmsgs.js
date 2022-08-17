@@ -7,6 +7,7 @@ var $modalClose = $('[data-modal-close]')
 var $modalOverlay = $('[data-modal-overlay]')
 var $copyInput = $('[data-copy-input]')
 var $modalCopyUrlBtn = $('[data-modal-copy-url]')
+var $modalShareUrlBtn = $('[data-modal-share-url]')
 
 // Buttons
 var $flipOrientationBtn = $('[data-btn-flip-orientation]')
@@ -228,11 +229,41 @@ function initClickListeners() {
     }, 2000)
     copyToClipboard()  
   })
+  $modalShareUrlBtn.on('click', () => {
+    shareUrl().then(() => {
+      setTimeout(() => {
+        closeCopyModal()
+      }, 2000)
+    }).catch(console.error);
+  })
 }
 
 function copyToClipboard() {
   $status.html("Copied - Paste to opponent!")
   navigator.clipboard.writeText(window.location)
+}
+
+async function shareUrl() {
+  if (!navigator.share) {
+    throw new Error("Web Share not available in this browser :(");
+  }
+  var colorMoved = 'Moved '
+  if (game.turn() === 'w') {
+    // Next player is White. Last player was Black.
+    colorMoved = 'Black moved '
+  }
+  if (game.turn() === 'b') {
+    // Next player is Black. Last player was White.
+    colorMoved = 'White moved '
+  }
+
+  return navigator.share({
+    title: colorMoved + moveFrom + " to " + moveTo,
+    url: window.location
+  }).then(() => {
+    console.log("Shared URL " + window.location);
+    $status.html("Shared to opponent!")
+  });
 }
 
 if (startFen) {
@@ -273,3 +304,10 @@ const enableBodyScroll = bodyScrollLock.enableBodyScroll
 const targetElement = document.querySelector('#dummy')
 enableBodyScroll(targetElement)
 
+// Web Share capability
+if (navigator.share) {
+  $modalShareUrlBtn.css({'display': 'block'})
+  console.debug("Activated Web Share")
+}else{
+  console.debug("Web Share not available")
+}
