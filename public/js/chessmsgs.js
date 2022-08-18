@@ -259,7 +259,7 @@ async function shareUrl() {
 
   return navigator.share({
     title: colorMoved + moveFrom + " to " + moveTo,
-    url: window.location
+    url: window.location.href
   }).then(() => {
     console.log("Shared URL " + window.location);
     $status.html("Shared to opponent!")
