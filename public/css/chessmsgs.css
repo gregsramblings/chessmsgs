@@ -122,6 +122,14 @@ a {
   width: auto;
 }
 
+.button-share {
+  /*
+    The Share button is hidden by default, then shown by JS if the
+    capability navigator.share is available
+  */
+  display: none;
+}
+
 .button:active {
   background-color: var(--brown-color);
   outline: none;
