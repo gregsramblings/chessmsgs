@@ -117,6 +117,7 @@ function onDrop(source, target) {
   
   updateStatus()
   moveComplete = true
+
   $copyUrlBtn.show()
 
 }
@@ -125,7 +126,10 @@ function onDrop(source, target) {
 function onSnapEnd() {
   board.position(game.fen())
   $copyInput.val(window.location)
-  openCopyModal()
+  setTimeout(() => {
+    openCopyModal()
+  }, 700)
+
 }
 
 function updateStatus() {
