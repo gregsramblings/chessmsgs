@@ -89,15 +89,12 @@ function onDragStart(source, piece, position, orientation) {
   }
   
   $("html").addClass('no-scroll')
-  disableBodyScroll(targetElement)
-
   onMouseoverSquare(source, piece)
 }
 
 function onDrop(source, target) {
 
   $("html").removeClass('no-scroll')
-  enableBodyScroll(targetElement)
   removeGreenSquares()
 
   // see if the move is legal
@@ -189,14 +186,11 @@ function openCopyModal() {
   $status.html("Moved " + moveFrom + " to " + moveTo)
   $lastMove.html(moveFrom + ' → ' + moveTo)
   $("html").addClass('no-scroll')
-  disableBodyScroll(targetElement)
 }
 
 function closeCopyModal() {
   $modal.removeClass('modal--is-visible')
   $("html").removeClass('no-scroll')
-  enableBodyScroll(targetElement)
-
 }
 
 function undoMove() {
@@ -293,20 +287,14 @@ board = Chessboard('myBoard', config)
 if (startFen) board.position(startFen, false)
 if (game.turn() == "b") board.orientation('black')
 
+$("html").addClass('no-scroll') // Lock scrolling
+
 updateStatus()
 initClickListeners()
 
 // Highlight last move
 if (lastTo) GreenSquare(lastTo)
 if (lastFrom) GreenSquare(lastFrom)
-//setTimeout(removeGreenSquares, 3000)
-
-
-// Total hack to workaround Chrome iOS bug
-const disableBodyScroll = bodyScrollLock.disableBodyScroll
-const enableBodyScroll = bodyScrollLock.enableBodyScroll
-const targetElement = document.querySelector('#dummy')
-enableBodyScroll(targetElement)
 
 // Web Share capability
 if (navigator.share) {
