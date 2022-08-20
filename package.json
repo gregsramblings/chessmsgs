@@ -11,20 +11,21 @@
     "url": "git://github.com/gregsramblings/chessmsgs.git"
   },
   "dependencies": {
-    "compression": "^1.7.4",
-    "express": "^4.17.1",
     "canvas": "^2.6.1",
     "canvas-to-buffer": "^1.1.0",
     "chess.js": "^0.10.2",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
     "fs": "^0.0.1-security",
-    "path": "^0.12.7",
     "nanoid": "^3.1.20",
+    "path": "^0.12.7",
     "request-ip": "^2.1.3"
   },
   "engines": {
     "node": ">= 12.0.0"
   },
   "scripts": {
+    "localtest": "python3 -m http.server",
     "build": "gcloud builds submit --tag gcr.io/chessmsgs/chessmsgs",
     "deploy": "gcloud beta run deploy chessmsgs --image gcr.io/chessmsgs/chessmsgs --min-instances=1 --platform managed --region=us-central1",
     "builddeploy": "npm run build && npm run deploy"

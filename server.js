@@ -12,20 +12,15 @@ var indexFileContent = fs.readFileSync('public/index.html', 'utf8')
 var ChessImageGenerator = require('./chess-image-generator')
 
 var imageGenerator = new ChessImageGenerator({
-	size: 400,
-    light: "#f0d9b5",
-    dark: "#b58863"
+	size: 400
 });
-
 var nanoid = require('nanoid')
 
 async function createImage(img, aspectMultiplier) {
-	const i = img.generateCustomBuffer(aspectMultiplier)
+	const i = img.generateBuffer(aspectMultiplier)
 	return i
 }
-
 app.get('/', (req, res) => {
-
 	var fen = req.query.fen
 	if (fen) {
 		var from = req.query.from
@@ -34,7 +29,7 @@ app.get('/', (req, res) => {
 		console.log("GAME:" + gid + "|" + from + "|" + to + "|" + fen + "|" + req.clientIp)
 		// World's tiniest template engine:
 		var modifiedFileContent = indexFileContent.replace(/{{url}}/g, "https://chessmsgs.com" + req.url)
-			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/v2/" + encodeURI(fen) + ".png")
+			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/v4/" + encodeURI(fen) + ".png")
 
 	} else {
 		fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
@@ -54,7 +49,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/fenimg/v*/*.png/', (req, res) => {
-
 	// Dynamically set aspect ratio based on which service is requesting the image
 	if(req.get('User-Agent').search("Facebot Twitterbot") >= 0) fenImageAspectRatio = 1.0 // Checking for Apple iMessage (weird string for Apple)
 	else if(req.get('User-Agent').search("Slack") >= 0) fenImageAspectRatio = 1.0 // Checking for Slack
@@ -64,6 +58,12 @@ app.get('/fenimg/v*/*.png/', (req, res) => {
 	
 	if(fen == '') fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; // New game board
 
+	// Flip board if black's turn
+	if(fen.split(" ")[1] == "w") {
+		imageGenerator.flipped = false
+	} else {
+		imageGenerator.flipped = true
+	}
 	imageGenerator.loadFEN(fen);	
 
 	createImage(imageGenerator,fenImageAspectRatio).then((i) => {

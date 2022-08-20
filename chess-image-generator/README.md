@@ -29,7 +29,7 @@ Output to either:
 
 - [Installation](#installation)
 - [Loading in a Chess Position](#loading-in-a-chess-position)
-    - [FEN](#loading-by-fend)
+    - [FEN](#loading-by-fen)
     - [PGN](#loading-by-pgn)
     - [Array of Characters](#loading-by-array)
 - [Generating Images](#generate-an-image)
@@ -37,8 +37,10 @@ Output to either:
     - [into Buffer](#generate-a-buffer)
 - [Image Customization](#image-customization)
     - [Canvas Size](#canvas-size)
+    - [Padding](#padding)
     - [Board Colors](#board-colors)
     - [Piece Style](#piece-style)
+    - [Board POV](#board-pov)
 - [Dependencies](#dependencies)
 
 
@@ -62,7 +64,8 @@ var imageGenerator = new ChessImageGenerator({
     size: 720,
     light: 'rgb(200, 200, 200)',
     dark: '#333333',
-    style: 'merida'
+    style: 'merida',
+    flipped: true
 });
 ```
 
@@ -202,19 +205,23 @@ The buffer will be returned from the function. Use promises or async await to en
 
 # Image Customization
 
-You have three options for customization of the resulting PNG:
+You have several options for customization of the resulting PNG:
 - [Canvas Size](#canvas-size)
+- [Padding](#padding)
 - [Board Colors](#board-colors)
 - [Piece Style](#piece-style)
+- [Board POV](#board-pov)
 
 These customizations are passed to the constructor when you create an instance of chess-image-generator:
 
 ```
 var imageGenerator = new ChessImageGenerator({
     size: 720,
+    padding: [10, 10, 10, 10],
     light: 'rgb(200, 200, 200)',
     dark: '#333333',
-    style: 'merida'
+    style: 'merida',
+    flipped: true
 });
 ```
 
@@ -234,11 +241,27 @@ var imageGenerator = new ChessImageGenerator({
 ```
 The resulting PNG's will be 1200px by 1200px.
 
+# Padding
+
+| Option  | Type     | Default   | Example       |
+|---------|----------|-----------|---------------|
+| padding | `array`  | [0,0,0,0] | [10,10,10,10] |
+
+Padding determines in **pixels** how much padding is added to each side of the board. The values are in order of top, right, bottom and left.
+
+### Example:
+```
+var imageGenerator = new ChessImageGenerator({
+    padding: [10,10,10,10],
+});
+```
+The resulting PNG's will have a padding of 10px on each side, increasing the image width and height by 20px.
+
 # Board Colors
 
 | Option | Type     | Default | Example          |
 |----------|----------|---------|------------------|
-| light     | `string` | *"rgb(181, 136, 99)"* | *"rgb(250,250,250)", "white", "#ffffff"* |
+| light     | `string` | *"rgb(240, 217, 181)"* | *"rgb(250,250,250)", "white", "#ffffff"* |
 | dark     | `string` | *"rgb(181, 136, 99)"* | *"rgb(0,0,0)", "black", "#000000"* |
 
 Light and dark determines the colors of both the light and dark squares respectively.
@@ -278,9 +301,19 @@ var imageGenerator = new ChessImageGenerator({
 
 | Option | Type     | Default | Example          |
 |----------|----------|---------|------------------|
-| style     | *string* | *"merida""* | *"alpha", "cheq"* |
+| style     | *string* | *"merida"* | *"alpha", "cheq"* |
 
 The piece style determines the used style of pieces to create the image.
+
+
+# Board POV
+| Option  | Type      | Default | Example       |
+|---------|-----------|---------|---------------|
+| flipped | `boolean` | *false* | *true, false* |
+
+Determines if the board should be flipped.  
+If set to `false`, the image will be from white's point of view.
+If set to `true`, the image will be from black's point of view.  
 
 ## Style Choices:
 - alpha

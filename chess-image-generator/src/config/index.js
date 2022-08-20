@@ -6,11 +6,13 @@ const black = 'pbnrqk';
 
 const defaultSize = 480;
 
-const defaultLight = 'rgb(181, 136, 99)';
+const defaultPadding = [0, 0, 0, 0];
 
-const defaultDark = 'rgb(240, 217, 181)';
+const defaultLight = 'rgb(240, 217, 181)';
 
-const deafultStyle = 'merida';
+const defaultDark = 'rgb(181, 136, 99)';
+
+const defaultStyle = 'merida';
 
 const filePaths = {
   wp: 'WhitePawn',
@@ -32,8 +34,9 @@ module.exports = {
   white,
   black,
   defaultSize,
+  defaultPadding,
   defaultLight,
   defaultDark,
-  deafultStyle,
+  defaultStyle,
   filePaths,
 };
