@@ -32,6 +32,7 @@ Output to either:
     - [FEN](#loading-by-fen)
     - [PGN](#loading-by-pgn)
     - [Array of Characters](#loading-by-array)
+    - [Highlighting Squares](#highlighting-squares)
 - [Generating Images](#generate-an-image)
     - [into PNG](#generate-a-png)
     - [into Buffer](#generate-a-buffer)
@@ -168,6 +169,20 @@ Piece notation follows the same rules as [FEN](#loading-by-fen).
 | Uppercase Char | *White Pieces*          | *K, Q, R, B, N, P* |
 | Lowercase Char | *Black Pieces*          | *k, q, r, b, n, p* |
 
+# Highlighting Squares
+
+```
+.highlightSquares(array)
+```
+| Parameter    | Type     | Description          |
+|---------|----------|----------------------|
+| array | `array of strings` | Array of coordinates to highlight. |
+
+### Example:
+```
+imageGenerator.highlightSquares(["e4", "e5"])
+```
+
 # Generate an Image
 
 After you've loaded a chess position into an instance of the chess-image-generator, use the following functions to generate your image with one of two outputs:
@@ -263,8 +278,9 @@ The resulting PNG's will have a padding of 10px on each side, increasing the ima
 |----------|----------|---------|------------------|
 | light     | `string` | *"rgb(240, 217, 181)"* | *"rgb(250,250,250)", "white", "#ffffff"* |
 | dark     | `string` | *"rgb(181, 136, 99)"* | *"rgb(0,0,0)", "black", "#000000"* |
+| highlight | `string` | *"rgba(235, 97, 80, 0.8)"* | *"rgb(255,0,0)", "red", "#ff0000"* |
 
-Light and dark determines the colors of both the light and dark squares respectively.
+Light and dark determines the colors of both the light and dark squares respectively. Highlight determines the color overlaid on top of any highlighted squares (using a RGBA value with some transparency is recommended so that light and dark squares are still distinguishable from one another if highlighted).
 
 Colors can be passed in a variety of formats:
 
