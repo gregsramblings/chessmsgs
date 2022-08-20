@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 		console.log("GAME:" + gid + "|" + from + "|" + to + "|" + fen + "|")
 		// World's tiniest template engine:
 		var modifiedFileContent = indexFileContent.replace(/{{url}}/g, "https://chessmsgs.com" + req.url)
-			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/v4/" + encodeURI(fen) + "+" + from + "+" + to + ".png")
+			.replace(/{{imgUrl}}/g, "https://chessmsgs.com/fenimg/v5/" + encodeURI(fen) + "+" + from + "+" + to + ".png")
 
 	} else {
 		fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
