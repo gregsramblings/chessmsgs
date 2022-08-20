@@ -5,7 +5,7 @@
   --brown-color: #b58863;
 }
 
-html, body {margin: 0; height: 100%; overflow: visible}
+html, body {margin: 0; height: 100%; }
 
 body {
   background-color: var(--grey-color);
@@ -37,10 +37,6 @@ input:focus {
 
 a {
   color: #cccccc;
-}
-
-.no-scroll {
-  overflow: hidden;
 }
 
 .content-wrapper {
@@ -247,13 +243,9 @@ a {
   }
 
   .modal__close:hover {
-  color: #757575;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.25s;
-}
-
-
-  html, body {overflow: visible}
-
+    color: #757575;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.25s;
+  }
 }

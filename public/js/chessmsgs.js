@@ -88,13 +88,13 @@ function onDragStart(source, piece, position, orientation) {
     return false
   }
   
-  $("html").addClass('no-scroll')
+  ////$("html").addClass('no-scroll')
   onMouseoverSquare(source, piece)
 }
 
 function onDrop(source, target) {
 
-  $("html").removeClass('no-scroll')
+  ////$("html").removeClass('no-scroll')
   removeGreenSquares()
 
   // see if the move is legal
@@ -185,12 +185,12 @@ function openCopyModal() {
   $modal.addClass('modal--is-visible')
   $status.html("Moved " + moveFrom + " to " + moveTo)
   $lastMove.html(moveFrom + ' → ' + moveTo)
-  $("html").addClass('no-scroll')
+  ////$("html").addClass('no-scroll')
 }
 
 function closeCopyModal() {
   $modal.removeClass('modal--is-visible')
-  $("html").removeClass('no-scroll')
+  ////$("html").removeClass('no-scroll')
 }
 
 function undoMove() {
@@ -284,10 +284,14 @@ var config = {
 
 board = Chessboard('myBoard', config)
 
+jQuery('#myBoard').on('scroll touchmove touchend touchstart contextmenu', function(e){
+  e.preventDefault()
+});
+
 if (startFen) board.position(startFen, false)
 if (game.turn() == "b") board.orientation('black')
 
-$("html").addClass('no-scroll') // Lock scrolling
+////$("html").addClass('no-scroll') // Lock scrolling
 
 updateStatus()
 initClickListeners()
