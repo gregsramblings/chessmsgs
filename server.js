@@ -55,7 +55,6 @@ app.get('/fenimg/v*/*.png/', (req, res) => {
 	else if(req.get('User-Agent').search("Slack") >= 0) fenImageAspectRatio = 1.0 // Checking for Slack
 	else fenImageAspectRatio = 2.1 // Everything else looks best as 2.1
 
-console.log(decodeURIComponent(req.url))
 	var boardInfo = decodeURIComponent(req.url.substr(11)).split('.')[0];
 	var fen  = boardInfo.split('+')[0]
 	var from = boardInfo.split('+')[1]
@@ -81,7 +80,8 @@ console.log(decodeURIComponent(req.url))
 	})
 })
 
-app.use(express.static('public'))
+
+app.use(express.static('public', {maxAge: 31557600000 }))
 
 const port = process.env.PORT || 8080
 app.listen(port, () => {
