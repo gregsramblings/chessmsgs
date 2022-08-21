@@ -1,6 +1,6 @@
 /* Global */
 :root {
-  --grey-color: #282828;
+  --grey-color: #212124;
   --tan-color: #f0d9b5;
   --brown-color: #b58863;
 }
@@ -18,7 +18,7 @@ body {
   position: relative;
 }
 
-h1,
+h1,h2,
 p {
   margin-top: 0;
 }
@@ -60,6 +60,11 @@ a {
 /* Header */
 .header__title {
   margin-bottom: 0.5rem;
+}
+
+.header__details {
+  font-size: 1.0rem;
+  font-weight: normal;
 }
 
 /* Details */
