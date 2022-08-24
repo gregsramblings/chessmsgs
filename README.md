@@ -11,7 +11,6 @@ Created because I wanted to play chess with others without having to install sof
 
 * [chessboard.js](https://github.com/oakmac/chessboardjs/) - JavaScript chessboard component - by [Chris Oakman](https://twitter.com/oakmac1)
 * [chess.js](https://github.com/jhlywa/chess.js) - JavaScript chess library that is used for chess move generation/validation, piece placement/movement, and check/checkmate/stalemate detection - by [Jeff Hlywa](https://twitter.com/jhlywa)
-* [body-scroll-lock](https://github.com/willmcpo/body-scroll-lock) - JavaScript library that makes it easy to manage scrolling on mobile (I needed to freeze scrolling during moves and this library works across almost all browsers) - by [Will Po](https://github.com/willmcpo)
 * [JQuery](https://jquery.com/) - the above two chess libraries required it, so I used it too.
 
 **Web Server**  - simple Node/Express server with some super simple templating to create the Open Graph and Twitter Card image URLs, links, etc.  This could have easily been a static website other than this requirement.
@@ -49,14 +48,3 @@ Access http://localhost:8080 to test. If you are running this on your own server
 npm run build
 npm run deploy
 ```
-
-or, build and deploy with a single click:
-
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)  
-You can also setup continuious deployment to auto-deploy when you push to a branch or tag using [Cloud Build](https://cloud.google.com/cloud-build?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web))
-
-
-## Why Google Cloud Run?
-The hosting requirements are simple. I needed support for Node.js/Express, domain mapping, and SSL. There are several options on Google Cloud including [Compute Engine](https://cloud.google.com/compute?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web) (VMs), [App Engine](https://cloud.google.com/appengine?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web), and [Kubernetes Engine](https://cloud.google.com/kubernetes-engine?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web). For this app, however, I wanted to go completely serverless, which quickly led me to Cloud Run. Cloud Run is a managed platform that enables you to run stateless containers that are invocable via web requests or Pub/Sub events. 
-
-Cloud Run is also basically free for this type of project because the always-free-tier includes 180,000 vCPU-seconds, 360,000 GiB-seconds, and 2 million requests per month (as of this writing – see the [Cloud Run pricing page](https://cloud.google.com/run/pricing?utm_campaign=CDR_grw_series_chessapp_release_120320&utm_source=external&utm_medium=web) for the latest details). Even beyond the free tier, it’s very inexpensive for this type of app because you only pay while a request is being handled on your container instance, and my code is simple and fast.
