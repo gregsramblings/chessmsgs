@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 
 	
 	if(req.url == '/') {
-		modifiedFileContent = modifiedFileContent.replace(/{{gid}}/g, nanoid.nanoid())
+		modifiedFileContent = modifiedFileContent.replace(/{{gid}}/g, nanoid.nanoid(10))
 	}
 
 	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
