@@ -1,5 +1,5 @@
 {
-  "author": "Greg Wilson <greg.wilson@gmail.com> (http://gregsramblings.com/)",
+  "author": "Greg Wilson <hello@chessmsgs.com> (http://gregsramblings.com/)",
   "name": "chessmsgs",
   "description": "ChessMsgs",
   "homepage": "https://chessmsgs.com",
@@ -11,7 +11,7 @@
     "url": "git://github.com/gregsramblings/chessmsgs.git"
   },
   "dependencies": {
-    "canvas": "^2.6.1",
+    "canvas": "^3.2.3",
     "canvas-to-buffer": "^1.1.0",
     "chess.js": "^0.10.2",
     "compression": "^1.7.4",
