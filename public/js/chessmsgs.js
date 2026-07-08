@@ -215,7 +215,12 @@ function initClickListeners() {
     undoMove()
   })
 
-  $flipOrientationBtn.on('click', board.flip)
+  $flipOrientationBtn.on('click', () => {
+    board.flip()
+    // Reapply highlighting after flipping
+    if (lastTo) GreenSquare(lastTo)
+    if (lastFrom) GreenSquare(lastFrom)
+  })
   $copyUrlBtn.on('click', copyToClipboard)
   $modalCopyUrlBtn.on('click', () => {
     setTimeout(() => {
